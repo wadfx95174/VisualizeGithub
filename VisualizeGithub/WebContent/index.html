@@ -58,8 +58,7 @@
 				<ul class="nav navbar-nav">
 					<li class="menuItem"><a href="#star">star</a></li>
 					<li class="menuItem"><a href="#fork">fork</a></li>
-					<li class="menuItem"><a href="#follow">follow</a></li>
-					<li class="menuItem"><a href="#watch">watch</a></li>
+					<li class="menuItem"><a href="#">more</a></li>
 				</ul>
 			</div>
 		   
@@ -72,7 +71,7 @@
 		<div class="wrap">
 			<div class="search">
 			<form  action="" class="form-inline">
-			<input id="searchForm" type="text" class="searchTerm" placeholder="What are you looking for?">
+			<input id="searchText" type="text" class="searchTerm" placeholder="What are you looking for?">
 			<button id="searchButton" class="searchButton">
 				<i class="fa fa-search"></i>
 			</button>
@@ -92,8 +91,7 @@
                   	<option selected value="">不限語言</option>
 	           		<option value="java">Java</option>
 	           		<option value="C%2B%2B">C++</option>
-	           		<option value="python">Python</option>
-                  	<option id="select333" style="color:black" onclick="language()">自訂語言</option>                 
+	           		<option value="python">Python</option>                 
                </select>
       
 				<select class="form-control" id="date" name="date" style="color:black">
@@ -103,7 +101,6 @@
             		<option value="30">一個月內</option>
             		<option value="180">半年內</option>
             		<option value="365">一年內</option>
-            		<option>自訂日期範圍</option>
                </select>
             </label>
 				</p>
@@ -128,155 +125,22 @@
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
 				<h3>Star熱門排行榜</h3>
 			</div>
-			<div class="row">
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
-				  <h3>專案名稱1</h3>
-				  <p class="lead">描述....</p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
-				   <h3>專案名稱2</h3>
-				   <p class="lead">描述....</p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
-				   <h3>專案名稱3</h3>
-					<p class="lead">描述....</p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
+			<div id="starLeaderboard" class="row">
 			</div><!-- /.row -->
-
 		</div>
 	</div>
 	
 	<!-- 依fork數顯示熱門 -->
     <div id="fork" class="content-section-b" style="border-top: 0">
-	
 		<div class="container">
-
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
 				<h3>Fork熱門排行榜</h3>
-				
 			</div>
-			
-			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
-				  <h3>專案名稱1</h3>
-				  <p class="lead">描述....</p>
-
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
-				   <h3>專案名稱2</h3>
-				   <p class="lead">描述....</p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
-				   <h3>專案名稱3</h3>
-					<p class="lead">描述....</p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
+			<div id="forkLeaderboard" class="row">
 				
 			</div><!-- /.row -->
-				
-			
 		</div>
 	</div>
-
-	<!-- 依follow數顯示熱門 -->
-	<div id="follow" class="content-section-b" style="border-top: 0">
-	
-		<div class="container">
-
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h3>Follow熱門排行榜</h3>
-				
-			</div>
-			
-			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
-				  <h3>專案名稱1</h3>
-				  <p class="lead">描述....</p>
-
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
-				   <h3>專案名稱2</h3>
-				   <p class="lead">描述....</p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
-				   <h3>專案名稱3</h3>
-					<p class="lead">描述....</p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-			</div><!-- /.row -->
-				
-			
-		</div>
-	</div>	
-	
-	<!-- 依watch數顯示熱門 -->
-	<div id="watch" class="content-section-b" style="border-top: 0">
-	
-	
-		<div class="container">
-
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h3>Watch熱門排行榜</h3>
-				
-			</div>
-			
-			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
-				  <h3>專案名稱1</h3>
-				  <p class="lead">描述....</p>
-
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
-				   <h3>專案名稱2</h3>
-				   <p class="lead">描述....</p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
-				   <h3>專案名稱3</h3>
-					<p class="lead">描述....</p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-			</div><!-- /.row -->
-				
-			
-		</div>
-	</div>
-	
-
 <!-- JavaScript -->
 <script src="plugins/jQuery-2.1.3.min.js" type="text/javascript"></script>
 <script src="plugins/bootstrap.js" type="text/javascript"></script>
