@@ -1,0 +1,391 @@
+ <!-- FlatFy Theme - Andrea Galanti /-->
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
+    <meta name="author" content="">
+
+    <title>Flatfy – Free Flat and Responsive HTML5 Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
+    <!-- Custom Google Web Font -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+	
+    <!-- Custom CSS-->
+    <link href="css/general.css" rel="stylesheet">
+	
+	 <!-- Owl-Carousel -->
+    <link href="css/custom.css" rel="stylesheet">
+	<link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	
+	<!-- Magnific Popup core CSS file -->
+	<link rel="stylesheet" href="css/magnific-popup.css"> 
+	
+	<!--翊偉寫的-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<script src="js/modernizr-2.6.2.min.js"></script>  <!-- Modernizr /-->
+	
+	<style type="text/css">
+		body{
+    background: #f2f2f2;
+    font-family: 'Open Sans', sans-serif; 
+    font-size:20px;    
+  }
+
+  .search {
+    width: 45%;
+    position: relative;
+    left: 27.5%;    
+  }
+
+  .searchTerm {
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+
+  .searchTerm:focus{
+    color: #00B4CC;
+  }
+
+  .searchButton {
+    position: absolute;  
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size:20px;    
+  }
+  
+  .hot{
+    width: 40%;
+    position: relative;
+    top: 25%;
+    left: 30%;
+  }
+  
+  .wrap{
+    width: 95%;
+    padding: 5px;
+    position: absolute;
+    top: 1%;
+    left: 2%;    
+  }
+
+    
+  .hr1{ height:3px;border:none;border-top:3px double #00B4CC;}
+	</style>
+</head>
+
+<body id="home">
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status"></div>
+	</div>
+	
+	<nav class="navbar-default" role="navigation" style="position:fixed;top:0px">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#home">Flatfy</a>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="menuItem">依</li>
+					<li class="menuItem"><a href="#star">star數</a></li>
+					<li class="menuItem"><a href="#fork">fork數</a></li>
+					<li class="menuItem"><a href="#follow">follow數</a></li>
+					<li class="menuItem"><a href="#watch">watch數</a></li>
+					<li class="menuItem">排列</li>
+				</ul>
+			</div>
+		   
+		</div>
+	</nav> 
+	
+	<!-- FullScreen -->
+    <div class="intro-header">
+		<div class="col-xs-12 text-center abcen1">
+		
+			<div class="search">
+			<form  action="">
+			<input type="text" class="searchTerm" placeholder="What are you looking for?">
+			<button type="submit" class="searchButton">
+			<i class="fa fa-search"></i>
+			</button>
+			<p>
+            <label>搜尋條件: 
+ 
+               <select name = "select11" style="color:black">
+                  <option selected style="color:black">專案名稱</option>
+                  <option style="color:black">程式碼</option>
+                  <option style="color:black">議題</option>
+                  <option style="color:black">使用者</option>
+                  <option style="color:black">主題</option>                 
+               </select>
+      
+				<select name = "select22" style="color:black">
+                  <option selected style="color:black">star數排列</option>
+                  <option style="color:black">fork數排列</option>
+                  <option style="color:black">follow數排列</option>
+                  <option style="color:black">watch數排列</option>                                  
+               </select>
+      
+				<select name = "select33" style="color:black">
+                  <option selected style="color:black">不限語言</option>
+                  <option style="color:black">Java</option>
+                  <option style="color:black">C++</option>
+                  <option style="color:black">Python</option>
+                  <option id="select333" style="color:black" onclick="language()">自訂語言</option>                 
+               </select>
+      
+				<select name = "select44" style="color:black">
+                  <option selected style="color:black">不限日期</option>
+                  <option style="color:black">一個禮拜內</option>
+                  <option style="color:black">一個月內</option>
+                  <option style="color:black">半年內</option>
+                  <option style="color:black">一年內</option> 
+				<option style="color:black">自訂日期</option>
+               </select>
+            </label>
+				</p>
+				</form>
+			</div>
+			
+			<ul class="list-inline intro-social-buttons">
+			</ul>
+		</div>    
+        <!-- /.container -->
+		<div class="col-xs-12 text-center abcen wow fadeIn">
+			<div class="button_down "> 
+				<a class="imgcircle wow bounceInUp" data-wow-duration="1.5s"  href="#star"> <img class="img_scroll" src="img/icon/circle.png" alt=""> </a>
+			</div>
+		</div>
+    </div>
+	
+	<!-- 依star數顯示熱門 -->
+	
+	
+	<div id="star" class="content-section-b" >
+	
+		<div class="container">
+
+			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
+				<h3>Star熱門排行榜</h3>
+				
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
+				  <h3>專案名稱1</h3>
+				  <p class="lead">描述....</p>
+
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
+				   <h3>專案名稱2</h3>
+				   <p class="lead">描述....</p>
+				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
+				   <h3>專案名稱3</h3>
+					<p class="lead">描述....</p>
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+			</div><!-- /.row -->
+
+		</div>
+	</div>
+	
+	<!-- 依fork數顯示熱門 -->
+    <div id="fork" class="content-section-b" style="border-top: 0">
+	
+		<div class="container">
+
+			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
+				<h2>Fork熱門排行榜</h2>
+				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
+				  <h3>專案名稱1</h3>
+				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
+				   <h3>專案名稱2</h3>
+				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
+				   <h3>專案名稱3</h3>
+					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+			</div><!-- /.row -->
+				
+			
+		</div>
+	</div>
+
+	<!-- 依follow數顯示熱門 -->
+	<div id="follow" class="content-section-b" style="border-top: 0">
+	
+		<div class="container">
+
+			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
+				<h2>Follow熱門排行榜</h2>
+				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
+				  <h3>Follow Me</h3>
+				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
+				   <h3>Gallery</h3>
+				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
+				   <h3>Retina</h3>
+					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+			</div><!-- /.row -->
+				
+			
+		</div>
+	</div>	
+	
+	<!-- 依watch數顯示熱門 -->
+	<div id="watch" class="content-section-b" style="border-top: 0">
+	
+	
+		<div class="container">
+
+			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
+				<h2>Watch熱門排行榜</h2>
+				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
+				  <h3>Follow Me</h3>
+				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
+				   <h3>Gallery</h3>
+				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+				<div class="col-sm-4 wow fadeInDown text-center">
+				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
+				   <h3>Retina</h3>
+					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+				</div><!-- /.col-lg-4 -->
+				
+			</div><!-- /.row -->
+				
+			
+		</div>
+	</div>
+	
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+	<script src="js/owl.carousel.js"></script>
+	<script src="js/script.js"></script>
+	<!-- StikyMenu -->
+	<script src="js/stickUp.min.js"></script>
+	<script type="text/javascript">
+	  jQuery(function($) {
+		$(document).ready( function() {
+		  $('.navbar-default').stickUp();
+		  
+		});
+	  });
+	
+	</script>
+	<!-- Smoothscroll -->
+	<script type="text/javascript" src="js/jquery.corner.js"></script> 
+	<script src="js/wow.min.js"></script>
+	<script>
+	 new WOW().init();
+	</script>
+	<script src="js/classie.js"></script>
+	<script src="js/uiMorphingButton_inflow.js"></script>
+	<!-- Magnific Popup core JS file -->
+	<script src="js/jquery.magnific-popup.js"></script> 
+</body>
+
+</html>
