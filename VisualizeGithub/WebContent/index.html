@@ -69,8 +69,9 @@
 	<!-- FullScreen -->
     <div class="intro-header">
 		<div class="col-xs-12 text-center abcen1">
-		
+		<div class="wrap">
 			<div class="search">
+			<form  action="" class="form-inline">
 			<input id="searchForm" type="text" class="searchTerm" placeholder="What are you looking for?">
 			<button id="searchButton" class="searchButton">
 				<i class="fa fa-search"></i>
@@ -78,7 +79,7 @@
 			<p>
             <label>搜尋條件: 
  
-               <select id="type" name="type" style="color:black">
+               <select class="form-control" id="type" name="type" style="color:black">
                   	<option selected value="repositories">專案名稱</option>
 					<option value="code">程式碼</option>
 					<option value="commits">提交</option>
@@ -87,7 +88,7 @@
 					<option value="topics">主題</option>             
                </select>
       
-				<select id="language" name="language" style="color:black">
+				<select class="form-control" id="language" name="language" style="color:black">
                   	<option selected value="">不限語言</option>
 	           		<option value="java">Java</option>
 	           		<option value="C%2B%2B">C++</option>
@@ -95,7 +96,7 @@
                   	<option id="select333" style="color:black" onclick="language()">自訂語言</option>                 
                </select>
       
-				<select id="date" name="date" style="color:black">
+				<select class="form-control" id="date" name="date" style="color:black">
                   	<option selected value="">不限日期</option>
 					<option value="1">一天內</option>
             		<option value="7">一週內</option>
@@ -106,6 +107,8 @@
                </select>
             </label>
 				</p>
+				</form>
+			</div>
 			</div>
 			
 			<ul class="list-inline intro-social-buttons">
@@ -158,32 +161,31 @@
 		<div class="container">
 
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Fork熱門排行榜</h2>
-				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				<h3>Fork熱門排行榜</h3>
 				
 			</div>
 			
 			<div class="row">
 			
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
+				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
 				  <h3>專案名稱1</h3>
-				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <p class="lead">描述....</p>
 
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
+				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
 				   <h3>專案名稱2</h3>
-				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				   <p class="lead">描述....</p>
 				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
+				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
 				   <h3>專案名稱3</h3>
-					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+					<p class="lead">描述....</p>
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
@@ -199,32 +201,31 @@
 		<div class="container">
 
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Follow熱門排行榜</h2>
-				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				<h3>Follow熱門排行榜</h3>
 				
 			</div>
 			
 			<div class="row">
 			
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Follow Me</h3>
-				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
+				  <h3>專案名稱1</h3>
+				  <p class="lead">描述....</p>
 
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Gallery</h3>
-				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
+				   <h3>專案名稱2</h3>
+				   <p class="lead">描述....</p>
 				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
-				   <h3>Retina</h3>
-					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
+				   <h3>專案名稱3</h3>
+					<p class="lead">描述....</p>
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
@@ -241,32 +242,31 @@
 		<div class="container">
 
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Watch熱門排行榜</h2>
-				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
+				<h3>Watch熱門排行榜</h3>
 				
 			</div>
 			
 			<div class="row">
 			
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Follow Me</h3>
-				  <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">
+				  <h3>專案名稱1</h3>
+				  <p class="lead">描述....</p>
 
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Gallery</h3>
-				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img  class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">
+				   <h3>專案名稱2</h3>
+				   <p class="lead">描述....</p>
 				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="img/icon/retina.svg" alt="Generic placeholder image">
-				   <h3>Retina</h3>
-					<p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
+				  <img  class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">
+				   <h3>專案名稱3</h3>
+					<p class="lead">描述....</p>
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
