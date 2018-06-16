@@ -6,9 +6,9 @@ $(document).ready(function(){
 	language="";
 	pushed="";
 	//append select的option
-	appendOption();
 	//搜尋按鈕
 	$("#searchButton").click(function(){
+		console.log("lll");
 		var date = new Date();
 		var Year = date.getFullYear()
 		var Mon = date.getMonth() + 1
@@ -34,8 +34,10 @@ $(document).ready(function(){
 			Day -=(($("#date").val()%365)%30);	
 			if(Day<10)Day = "0"+Day;
 		}
+		
 		if($("#language").val()!="")language = "+language:"+$("#language").val();
 		if($("#date").val()!="")pushed = "+pushed:>"+Year+"-"+Mon+"-"+Day;
+		console.log(apiUrl+$("#type").val()+"?q="+$("#searchForm").val()+language+pushed+"&sort=stars&order=desc");
 		$.ajax({
 			url:apiUrl+$("#type").val()+"?q="+$("#searchForm").val()+language+pushed+"&sort=stars&order=desc",
 			cache:false,
@@ -48,26 +50,3 @@ $(document).ready(function(){
 		});
 	});
 });
-
-function appendOption(){
-	$("#type").append('<option selected value="repositories">專案名稱</option>'
-			+'<option value="code">程式碼</option>'
-			+'<option value="commits">提交</option>'
-			+'<option value="issues">議題</option>'
-			+'<option value="users">使用者</option>'
-			+'<option value="topics">主題</option>');
-	
-	$("#language").append('<option selected value="">不限語言</option>'
-	           +'<option value="java">Java</option>'
-	           +'<option value="C%2B%2B">C++</option>'
-	           +'<option value="python">Python</option>'
-	           +'<option>自訂語言</option>');
-	
-	$("#date").append('<option selected value="">不限日期</option>'
-			+'<option value="1">一天內</option>'
-            +'<option value="7">一週內</option>'
-            +'<option value="30">一個月內</option>'
-            +'<option value="180">半年內</option>'
-            +'<option value="365">一年內</option>'
-            +'<option>自訂日期範圍</option>');
-}
