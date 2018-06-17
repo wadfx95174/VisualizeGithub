@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "utf-8">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <title>visualizeGithub</title> 
+      <style type = "text/css">
+		body{
+		  background: #f2f2f2;
+		  font-family: 'Open Sans', sans-serif;	
+		  font-size:20px;		  
+		}
+
+		.search {
+		  width: 45%;
+		  position: relative;
+		  left: 27.5%;		  
+		}
+
+		.searchTerm {
+		  float: left;
+		  width: 100%;
+		  border: 3px solid #00B4CC;
+		  padding: 5px;
+		  height: 50px;
+		  border-radius: 5px;
+		  outline: none;
+		  color: #9DBFAF;
+		}
+
+		.searchTerm:focus{
+		  color: #00B4CC;
+		}
+
+		.searchButton {
+		  position: absolute;  
+		  right: -50px;
+		  width: 50px;
+		  height: 50px;
+		  border: 1px solid #00B4CC;
+		  background: #00B4CC;
+		  text-align: center;
+		  color: #fff;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  font-size:20px;		  
+		}
+		
+		.hot{
+		  width: 40%;
+		  position: relative;
+		  top: 25%;
+		  left: 30%;
+		}
+		
+		.wrap{
+		  width: 95%;
+		  padding: 5px;
+		  position: absolute;
+		  top: 1%;
+		  left: 2%;		  
+		}
+				
+		.hr1{ height:3px;border:none;border-top:3px double #00B4CC;}		
+		
+      </style>
+      <script>
+         function language(){
+			document.getElementById('select333').value = input
+		 }
+      </script>
+   </head>
+   <body>
+	  <div class="wrap">
+		<div class="search">
+			<form  action="">
+				<input type="text" class="searchTerm" placeholder="What are you looking for?">
+				<button type="submit" class="searchButton">
+				<i class="fa fa-search"></i>
+			</button>
+			<p>
+            <label>搜尋條件: 
+				
+			
+               <select name = "select11">
+                  <option selected>專案名稱</option>
+                  <option>程式碼</option>
+                  <option>議題</option>
+                  <option>使用者</option>
+                  <option>主題</option>                 
+               </select>
+			   
+			   <select name = "select22">
+                  <option selected>star數排列</option>
+                  <option>fork數排列</option>
+                  <option>follow數排列</option>
+                  <option>watch數排列</option>                                  
+               </select>
+			   
+			   <select name = "select33">
+                  <option selected>不限語言</option>
+                  <option>Java</option>
+                  <option>C++</option>
+                  <option>Python</option>
+                  <option id="select333" onclick="language()">自訂語言</option>                 
+               </select>
+			   
+			   <select name = "select44">
+                  <option selected>不限日期</option>
+                  <option>一個禮拜內</option>
+                  <option>一個月內</option>
+                  <option>半年內</option>
+                  <option>一年內</option> 
+				  <option>自訂日期</option>
+               </select>
+            </label>
+         </p>
+			</form>
+		</div>
+
+	  <hr class="hr1">	  
+
+	  <div class="hot">
+		<form  action="">
+		 <p>
+            <label>熱門專案: 
+               <select name = "select1">
+                  <option selected>star數</option>
+                  <option>fork數</option>
+                  <option>follow數</option>
+                  <option>watch數</option>                
+               </select>
+			</label>
+			<label>時間:			   
+			   <select name = "select2">
+                  <option>一個禮拜內</option>
+                  <option>一個月內</option>
+                  <option>半年內</option>
+                  <option>一年內</option>                                 
+               </select>			   
+            </label>
+			<button>篩選</button>
+			<a href="">See more...</a>
+         </p>
+		</form>
+	  </div>
+	  </div>
+      
+   </body>
+</html>
