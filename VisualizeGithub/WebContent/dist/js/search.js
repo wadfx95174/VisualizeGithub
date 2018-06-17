@@ -64,11 +64,12 @@ $(document).ready(function(){
 				console.log(response.items[i].description);
 				$("#starLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
 						+img
-						+'<h3>'+response.items[i].full_name+'</h3>'
+						+'<h3 class="ellipsis">'+response.items[i].full_name+'</h3>'
 						+'<p class="lead">'+response.items[i].description+'</p>'
 						+'<p><a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
 						+'<a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
 						+'</div>');
+				$('.ellipsis').tooltip({title:response.items[i].full_name ,  placement:"bottom", animation: true});
 			}
 		},
 		error:function(e){
@@ -88,11 +89,12 @@ $(document).ready(function(){
 				console.log(response.items[i].description);
 				$("#forkLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
 						+img
-						+'<h3>'+response.items[i].full_name+'</h3>'
+						+'<h3 class="ellipsis">'+response.items[i].full_name+'</h3>'
 						+'<p class="lead">'+response.items[i].description+'</p>'
 						+'<p><a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
 						+'<a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
 						+'</div>');
+				$('.ellipsis').tooltip({title:response.items[i].full_name ,  placement:"bottom", animation: true});
 			}
 		},
 		error:function(e){
