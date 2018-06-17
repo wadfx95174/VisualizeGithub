@@ -1,120 +1,98 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta charset = "utf-8">
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <title>visualizeGithub</title> 
-      <style type = "text/css">
-		body{
-		  background: #f2f2f2;
-		  font-family: 'Open Sans', sans-serif;
-		}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Visualize Github</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="http://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet" />
+<link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
-		.search {
-		  width: 45%;
-		  position: relative;
-		  left: 27.5%;
-		  font-size:20px;
-		}
+<!-- searchResult.css -->
+<link href="dist/css/searchResult.css" rel="stylesheet">
 
-		.searchTerm {
-		  float: left;
-		  width: 100%;
-		  border: 3px solid #00B4CC;
-		  padding: 5px;
-		  height: 50px;
-		  border-radius: 5px;
-		  outline: none;
-		  color: #9DBFAF;
-		}
-
-		.searchTerm:focus{
-		  color: #00B4CC;
-		}
-
-		.searchButton {
-		  position: absolute;  
-		  right: -50px;
-		  width: 50px;
-		  height: 50px;
-		  border: 1px solid #00B4CC;
-		  background: #00B4CC;
-		  text-align: center;
-		  color: #fff;
-		  border-radius: 5px;
-		  cursor: pointer;
-		  
-		}
-
-		/*Resize the wrap to see the search bar change!*/
-		.wrap{
-		  width: 95%;
-		  padding: 5px;
-		  position: absolute;
-		  top: 1%;
-		  left: 2%;		  
-		}
-
-		.hr1{ height:3px;border:none;border-top:3px double #00B4CC;}
-		
-		.hr2{ height:1px;border:none;border-top:1px solid #00B4CC;}
-		
-      </style>
-      <script>
-         
-      </script>
-   </head>
-   <body>
-	  <div class="wrap">
-		<div class="search">
-			<form  action="">
-				<input type="text" class="searchTerm" placeholder="What are you looking for?">
-				<button type="submit" class="searchButton">
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div class="wrap">
+			<div class="search">
+			<form  action="" class="form-inline">
+			<input id="searchText" type="text" class="searchTerm" placeholder="What are you looking for?">
+			<button id="searchButton" class="searchButton">
 				<i class="fa fa-search"></i>
 			</button>
 			<p>
-            <label>搜尋條件: 
-               <select name = "select11">
-                  <option selected>專案名稱</option>
-                  <option>程式碼</option>
-                  <option>議題</option>
-                  <option>使用者</option>
-                  <option>主題</option>                 
+            <label style="color:#FFF;">搜尋條件:
+ 
+               <select class="form-control" id="type" name="type" style="color:black;" onchange="change(this.value)">
+                  	<option selected value="repositories">專案名稱</option>
+					<option value="code">程式碼</option>
+					<option value="commits">提交</option>
+					<option value="issues">議題</option>
+					<option value="users">使用者</option>
+					<option value="topics">主題</option>             
                </select>
-			   
-			   <select name = "select22">
-                  <option selected>star數排列</option>
-                  <option>fork數排列</option>
-                  <option>follow數排列</option>
-                  <option>watch數排列</option>                                  
+      
+				<select class="form-control" id="language" name="language" style="color:black;">
+                  	<option selected value="">不限語言</option>
+	           		<option value="java">Java</option>
+	           		<option value="c++">C++</option>
+	           		<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+					<option value="python">Python</option>
+	           		<option value="C%2B%2B">C++</option>
+	           		<option value="python">Python</option>                 
                </select>
-			   
-			   <select name = "select33">
-                  <option selected>不限語言</option>
-                  <option>Java</option>
-                  <option>C++</option>
-                  <option>Python</option>
-                  <option>自訂語言</option>                 
-               </select>
-			   
-			   <select name = "select44">
-                  <option selected>不限日期</option>
-                  <option>一個禮拜內</option>
-                  <option>一個月內</option>
-                  <option>半年內</option>
-                  <option>一年內</option> 
-				  <option>自訂日期</option>
+      
+				<select class="form-control" id="date" name="date" style="color:black;">
+                  	<option selected value="0">不限日期</option>
+					<option value="1">一天內</option>
+            		<option value="7">一週內</option>
+            		<option value="30">一個月內</option>
+            		<option value="180">半年內</option>
+            		<option value="365">一年內</option>
                </select>
             </label>
-         </p>
-			</form>
+				</p>
+				</form>
+			</div>
+			</div>
 		</div>
-		<hr class="hr1">
-		
-		<div class="w3-row">
-			<div class="w3-col" style="width:60%">
-				<div class="w3-row">
+	</div> 
+	<div class="w3-row">
+			<div class="w3-col" style="width:60%;padding:25px;">
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
 					<div class="w3-col" style="width:60%;height:150px">
 						<a href="">
 						<p>專案名稱:XXXXXXXXXX</p>
@@ -128,8 +106,8 @@
 						</a>						
 					</div>					
 				</div>
-				<hr class="hr2">
-				<div class="w3-row">
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
 					<div class="w3-col" style="width:60%;height:150px">
 						<a href="">
 						<p>專案名稱:XXXXXXXXXX</p>
@@ -143,8 +121,8 @@
 						</a>						
 					</div>					
 				</div>
-				<hr class="hr2">
-				<div class="w3-row">
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
 					<div class="w3-col" style="width:60%;height:150px">
 						<a href="">
 						<p>專案名稱:XXXXXXXXXX</p>
@@ -158,10 +136,10 @@
 						</a>						
 					</div>					
 				</div>
-				<hr class="hr2">
+				
 			</div>
 			  
-			<div class="w3-col" style="width:40%;padding:15px;">
+			<div class="w3-col" style="width:40%;padding:25px;">
 				<img src="test圖.jpg" style="width:90%;height:auto"></img>
 				<button>language</button>
 				<button>fork</button>
@@ -172,9 +150,5 @@
 			</div>
 		</div>
 	  </div>
-	  
-	  
-	  
-      
-   </body>
+</body>
 </html>
