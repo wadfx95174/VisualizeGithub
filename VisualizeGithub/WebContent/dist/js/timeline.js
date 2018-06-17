@@ -11,7 +11,7 @@ var options = {
 };
 
 // 將資料轉為 timeline 可以吃進去的陣列
-function importData(inputData)
+function convertToTimelineData(inputData)
 {
     var outputData = [];
     for (var i = 0; i < inputData.length; i++)
@@ -55,6 +55,17 @@ function importData(inputData)
     }
     console.log(outputData);
     return outputData;
+}
+
+function getVersionIdArray(timelineData)
+{
+    var versionIdArray = [];
+    for (var i = 0; i < timelineData.length; i++)
+    {
+        if (timelineData[i].type == 'background' && timelineData[i].content != '')
+            versionIdArray.push({id: timelineData[i].id, version: timelineData[i].content});
+    }
+    return versionIdArray;
 }
 
 // 繪製 timeline
