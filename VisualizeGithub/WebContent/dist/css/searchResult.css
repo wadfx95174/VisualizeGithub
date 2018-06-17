@@ -43,9 +43,7 @@ body{
 .wrap{
   width: 95%;
   padding: 5px;
-  position: absolute;
-  top: 1%;
-  left: 2%;		  
+  	  
 }
 
 .hr1{ height:3px;border:none;border-top:3px double #00B4CC;}
