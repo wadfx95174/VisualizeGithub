@@ -99,39 +99,61 @@ $(document).ready(function(){
 				else img = '<img class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
 				$("#starLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
 						+img
-						+'<h3>'+response.data.search.edges[0].node.nameWithOwner+'</h3>'
-						+'<p class="lead">'+response.data.search.edges[0].node.description+'</p>'
-						+'<p><a href="https://github.com/'+response.data.search.edges[0].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
-						+'<a href="https://github.com/'+response.data.search.edges[0].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
+						+'<h3 class="ellipsis">'+response.data.search.edges[i].node.nameWithOwner+'</h3>'
+						+'<p class="lead">'+response.data.search.edges[i].node.description+'</p>'
+						+'<p><a href="https://github.com/'+response.data.search.edges[i].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
+						+'<a href="https://github.com/'+response.data.search.edges[i].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
 						+'</div>');
+				$('.ellipsis').tooltip({title:response.items[i].full_name ,  placement:"bottom", animation: true});
 			}
 		},
 		error:function(e){
-			console.log("trending init error");
+			console.log("star trending init error");
 		}
 	});
 	//fork排行榜
-	// $.ajax({
-	// 	url:"https://api.github.com/search/repositories?q=forks:>30000&sort=forks&order=desc&"+access_token,
-	// 	cache:false,
-	// 	success:function(response){
-	// 		for(var i = 0;i < 3;i++){
-	// 			if(i==0)img = '<img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
-	// 			else if(i==1)img = '<img class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
-	// 			else img = '<img class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
-	// 			$("#forkLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
-	// 					+img
-	// 					+'<h3>'+response.items[i].full_name+'</h3>'
-	// 					+'<p class="lead">'+response.items[i].description+'</p>'
-	// 					+'<p><a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
-	// 					+'<a href="https://github.com/'+response.items[i].full_name+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
-	// 					+'</div>');
-	// 		}
-	// 	},
-	// 	error:function(e){
-	// 		console.log("trending init error");
-	// 	}
-	// });
+	$.ajax({
+		method: "POST",
+    	url: "https://api.github.com/graphql",
+    	contentType: "application/json",
+      	headers: {
+        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+      	},
+      	data: JSON.stringify({
+      		query:
+      		'{'
+      		+'search(query: "forks:>30000 sort:forks-desc", type: REPOSITORY, first: 3) {'
+      			+'edges {'
+					+'node {'
+						+'... on Repository {'
+				        	+'nameWithOwner '
+				          	+'description '
+				       	+'}'
+					+'}'
+				+'}'
+			+'}'
+			+'}'
+		}),
+		cache:false,
+		success:function(response){
+			for(var i = 0;i < 3;i++){
+				if(i==0)img = '<img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
+				else if(i==1)img = '<img class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
+				else img = '<img class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
+				$("#forkLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
+						+img
+						+'<h3 class="ellipsis">'+response.data.search.edges[i].node.nameWithOwner+'</h3>'
+						+'<p class="lead">'+response.data.search.edges[i].node.description+'</p>'
+						+'<p><a href="https://github.com/'+response.data.search.edges[i].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
+						+'<a href="https://github.com/'+response.data.search.edges[i].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
+						+'</div>');
+				$('.ellipsis').tooltip({title:response.items[i].full_name ,  placement:"bottom", animation: true});
+			}
+		},
+		error:function(e){
+			console.log("fork trending init error");
+		}
+	});
 	// $.ajax({
  //    	method: "POST",
  //    	url: "https://api.github.com/graphql",
