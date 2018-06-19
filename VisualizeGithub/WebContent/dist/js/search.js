@@ -1,5 +1,5 @@
 
-var language,pushed;
+var language,pushed,created;
 $(document).ready(function(){
 	language="";
 	pushed="";
@@ -34,7 +34,10 @@ $(document).ready(function(){
 		//設定程式語言
 		if($("#language").val()!="")language = "language:"+$("#language").val();
 		//設定時間限制
-		if($("#date").val()!="")pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
+		if($("#date").val()!=""){
+			pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
+			created = "created:>"+Year+"-"+Mon+"-"+Day;
+		}
 		// console.log(apiSearchUrl+$("#type").val()+"?q="+$("#searchText").val()+language+pushed+"&sort=stars&order=desc&per_page=100&"+access_token);
 
 		var check=true,cursor="";
@@ -161,22 +164,28 @@ $(document).ready(function(){
 			      	data: JSON.stringify({
 			      		query:
 			      			'{'
-							  +'search(query: "'+$("#searchText").val()+' '+language+' '+pushed+', type: USER, first: 100'+cursor+') {'
+							  +'search(query: "'+$("#searchText").val()+' '+language+' '+created+'", type: USER, first: 100'+cursor+') {'
 							    +'edges {'
 							      +'node {'
 							        +'... on Issue {'
-							          +'owner{'
-							            +'login'
+							          +'repository{'
+							            +'owner {'
+							             +'login '
+							            +'}'
+							            +'name'
 							          +'}'
-							          +'name '
-							          +'description '
-							          +'stargazers {'
-							            +'totalCount'
-							          +'}'
-							          +'forks {'
-							            +'totalCount'
-							          +'}'
+							          +'title'
 							          +'updatedAt'
+							          +'body'
+									  +'participants{'
+							            +'totalCount'
+							          +'}'
+							          +'labels{'
+							            +'totalCount'
+							          +'}'
+							          +'comments{'
+							            +'totalCount'
+							          +'}'
 							        +'}'
 							      +'}'
 							    +'}'
@@ -193,7 +202,7 @@ $(document).ready(function(){
 						check = response.data.search.pageInfo.hasNextPage;
 						cursor = ',after:"'+response.data.search.pageInfo.endCursor+'"';
 
-						printResult(response,response.data.search.edges.length);
+						printIssueResult(response,response.data.search.edges.length);
 					},
 					error:function(e){
 						console.log("search error");
@@ -213,7 +222,8 @@ var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[];
 //大圖要的資料，user
 var allUserIssueArray=[],allUserFollowersArray=[],allUserFollowingArray=[],allUserRepositoriesArray=[];
 var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
-
+//大圖要的資料，issue
+var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
 
 //輸出"repository"搜尋結果
@@ -394,6 +404,21 @@ function printUserResult(response,length){
 		});
 	}
 }
+//輸出"issue"搜尋結果
 function printIssueResult(response,Length){
+	var title;
+	//總共有幾個page
+	for(var i = 0;i < length;i++){
+		title = response.data.search.edges[i].node.title;
 
+		//participant
+		object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
+		allIssueParticipantArray.push(object);
+		//label
+		object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
+		allIssueLabelArray.push(object);
+		//comment
+		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
+		allIssueCommentArray.push(object);
+	}
 }
