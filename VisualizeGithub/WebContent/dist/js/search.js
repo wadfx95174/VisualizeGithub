@@ -1,5 +1,5 @@
 
-var language,pushed;
+var language,pushed,created;
 $(document).ready(function(){
 	language="";
 	pushed="";
@@ -34,7 +34,14 @@ $(document).ready(function(){
 		//設定程式語言
 		if($("#language").val()!="")language = "language:"+$("#language").val();
 		//設定時間限制
+<<<<<<< HEAD
 		if($("#date").val()!="")pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
+=======
+		if($("#date").val()!=""){
+			pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
+			created = "created:>"+Year+"-"+Mon+"-"+Day;
+		}
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 		// console.log(apiSearchUrl+$("#type").val()+"?q="+$("#searchText").val()+language+pushed+"&sort=stars&order=desc&per_page=100&"+access_token);
 
 		var check=true,cursor="";
@@ -65,6 +72,18 @@ $(document).ready(function(){
 							          +'}'
 							          +'name '
 							          +'description '
+<<<<<<< HEAD
+=======
+							          +'repositoryTopics(first:10){'
+							            +'edges{'
+							              +'node{'
+							                +'topic{'
+							                  +'name'
+							                +'}'
+							              +'}'
+							            +'}'
+							          +'}'
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 							        +'}'
 							      +'}'
 							    +'}'
@@ -152,6 +171,7 @@ $(document).ready(function(){
 			      	data: JSON.stringify({
 			      		query:
 			      			'{'
+<<<<<<< HEAD
 							  +'search(query: "'+$("#searchText").val()+' '+language+' '+pushed+', type: USER, first: 100'+cursor+') {'
 							    +'edges {'
 							      +'node {'
@@ -168,6 +188,30 @@ $(document).ready(function(){
 							            +'totalCount'
 							          +'}'
 							          +'updatedAt'
+=======
+							  +'search(query: "'+$("#searchText").val()+' '+language+' '+created+'", type: USER, first: 100'+cursor+') {'
+							    +'edges {'
+							      +'node {'
+							        +'... on Issue {'
+							          +'repository{'
+							            +'owner {'
+							             +'login '
+							            +'}'
+							            +'name'
+							          +'}'
+							          +'title'
+							          +'updatedAt'
+							          +'body'
+									  +'participants{'
+							            +'totalCount'
+							          +'}'
+							          +'labels{'
+							            +'totalCount'
+							          +'}'
+							          +'comments{'
+							            +'totalCount'
+							          +'}'
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 							        +'}'
 							      +'}'
 							    +'}'
@@ -184,7 +228,11 @@ $(document).ready(function(){
 						check = response.data.search.pageInfo.hasNextPage;
 						cursor = ',after:"'+response.data.search.pageInfo.endCursor+'"';
 
+<<<<<<< HEAD
 						printResult(response,response.data.search.edges.length);
+=======
+						printIssueResult(response,response.data.search.edges.length);
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 					},
 					error:function(e){
 						console.log("search error");
@@ -204,7 +252,12 @@ var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[];
 //大圖要的資料，user
 var allUserIssueArray=[],allUserFollowersArray=[],allUserFollowingArray=[],allUserRepositoriesArray=[];
 var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
+<<<<<<< HEAD
 
+=======
+//大圖要的資料，issue
+var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 var languageObject,object;
 
 //輸出"repository"搜尋結果
@@ -385,6 +438,26 @@ function printUserResult(response,length){
 		});
 	}
 }
+<<<<<<< HEAD
 function printIssueResult(response,Length){
 
+=======
+//輸出"issue"搜尋結果
+function printIssueResult(response,Length){
+	var title;
+	//總共有幾個page
+	for(var i = 0;i < length;i++){
+		title = response.data.search.edges[i].node.title;
+
+		//participant
+		object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
+		allIssueParticipantArray.push(object);
+		//label
+		object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
+		allIssueLabelArray.push(object);
+		//comment
+		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
+		allIssueCommentArray.push(object);
+	}
+>>>>>>> 65f5cfa75837965af08029a0d35f1b932d7b2ee3
 }

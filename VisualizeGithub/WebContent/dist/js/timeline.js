@@ -11,7 +11,7 @@ var options = {
 };
 
 // 將資料轉為 timeline 可以吃進去的陣列
-function importData(inputData)
+function convertToTimelineData(inputData)
 {
     var outputData = [];
     for (var i = 0; i < inputData.length; i++)
@@ -57,6 +57,17 @@ function importData(inputData)
     return outputData;
 }
 
+function getVersionIdArray(timelineData)
+{
+    var versionIdArray = [];
+    for (var i = 0; i < timelineData.length; i++)
+    {
+        if (timelineData[i].type == 'background' && timelineData[i].content != '')
+            versionIdArray.push({id: timelineData[i].id, version: timelineData[i].content, start: timelineData[i].start, end: timelineData[i].end});
+    }
+    return versionIdArray;
+}
+
 // 繪製 timeline
 function draw(container, data)
 {
@@ -64,7 +75,11 @@ function draw(container, data)
 }
 
 // 畫面移動至選定 id 位置
-function moveToVersion(id)
+function moveToVersion(start, end)
 {
-    timeline.focus(id, {duration: 1000});
+    console.log(start);
+    console.log(end);
+    timeline.setWindow(start, end);
+    // timeline.fit();
+    // timeline.focus(id, {duration: 1000});
 }
