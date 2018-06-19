@@ -15,7 +15,6 @@
 <link href="http://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet" />
 <link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
-<link href="plugins/general.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- page需要匯入的css跟js -->
 <link rel="stylesheet" href="plugins/layui.css"  media="all">
@@ -666,26 +665,7 @@ layui.use(['laypage', 'layer'], function(){
   var laypage = layui.laypage
   ,layer = layui.layer;
   
-  
- var data = [
-    {title:'1', description:'121'},
-    {title:'2', description:'122'},
-    {title:'3', description:'123'},
-    {title:'4', description:'124'},
-    {title:'5', description:'125'},
-    {title:'6', description:'126'},
-    {title:'7', description:'127'},
-    {title:'8', description:'128'},
-    {title:'9', description:'129'},
-    {title:'10', description:'1210'},
-    {title:'11', description:'1211'},
-    {title:'12', description:'1212'},
-    {title:'13', description:'1213'},
-    {title:'14', description:'1214'},
-    {title:'15', description:'1215'},
-    {title:'16', description:'1216'},
-  ];  
-  
+  var data = searchResultArray;
 
 laypage.render({
     elem: 'paging'
@@ -696,20 +676,27 @@ laypage.render({
 	  document.getElementById('pageResult').innerHTML = function(){
         var arr = [],thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
         layui.each(thisData, function(index, item){
-          arr.push('<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
-				+'<div class="w3-col" style="width:60%;height:150px">'
-						+'<a href="">'
-						+'<p>'+item.title+'</p>'
-						+'<p>簡介:'+item.description+'</p>'
-						+'</a>'
-					+'</div>'
-					+'<div class="w3-col" style="width:5%;height:150px"></div>'
-					+'<div class="w3-col" style="width:30%;height:150px">'
-						+'<a href="">'
-						+'<img src="test圖.jpg" style="width:auto;height:95%;"></img>'
-						+'</a>'					
-					+'</div>'	
-				+'</div>');
+
+        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+							+'<div class="w3-col" style="width:60%;height:150px">'
+								+'<a href="' + item.url + '">'
+								+'<h2>'+item.title+'</h2><br>'
+								+'<p>'+ (item.description != null ? item.description : '') +'</p><br>'
+								+'</a>';
+			for (var i = 0; i < item.topic.length; i++)
+			{
+				pushObj += item.topic[i].node.topic.name + ' ';
+			}
+
+			pushObj += '</div>'
+						+'<div class="w3-col" style="width:5%;height:150px"></div>'
+						+'<div class="w3-col" style="width:30%;height:150px">'
+							+'<a href="">'
+							+'<img src="test圖.jpg" style="width:auto;height:95%;"></img>'
+							+'</a>'					
+						+'</div>'	
+					+'</div>';
+            arr.push(pushObj);
         });
         return arr.join('');
       }();

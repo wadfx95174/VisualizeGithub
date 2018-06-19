@@ -270,11 +270,12 @@ var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
 var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
 
+var searchResultArray = [];
+
 //輸出"repository"搜尋結果
 function printRepositoryResult(response,length){
 	var name,login;
 	console.log(response);
-	
 	var promises = [];
 
 	//總共有幾個page
@@ -379,6 +380,7 @@ function printRepositoryResult(response,length){
 				}
 		})
 		promises[i] = promise;
+		searchResultArray.push({title: login + '/' + name, description: response.data.search.edges[i].node.description, url: response.data.search.edges[i].node.url, topic: response.data.search.edges[i].node.repositoryTopics.edges});
 	};
 	Promise.all(promises).then(function(){
 		drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400);
