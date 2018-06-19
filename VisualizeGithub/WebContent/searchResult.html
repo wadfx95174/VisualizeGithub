@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Visualize Github</title>
+<title>SearchResult</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,17 +15,24 @@
 <link href="http://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet" />
 <link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link href="plugins/general.css" rel="stylesheet" type="text/css" media="all" />
 
- <link rel="stylesheet" href="plugins/layui.css"  media="all">
- <script src="plugins/layui.js" charset="utf-8"></script>
- <script src="plugins/lay/modules/laypage.js" charset="utf-8"></script>
-  <script src="plugins/lay/modules/layer.js" charset="utf-8"></script>
+<!-- page需要匯入的css跟js -->
+<link rel="stylesheet" href="plugins/layui.css"  media="all">
+<script src="plugins/layui.js" charset="utf-8"></script>
+<script src="plugins/lay/modules/laypage.js" charset="utf-8"></script>
+<script src="plugins/lay/modules/layer.js" charset="utf-8"></script>
+
 
 <!-- searchResult.css -->
 <link href="dist/css/searchResult.css" rel="stylesheet">
 
 </head>
 <body>
+
+
+
+
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header" class="container">
@@ -531,7 +538,7 @@
               
                </select>
       
-				<select class="form-control" id="date" name="date" style="color:black;">
+				<select class="form-control" id="date" name="date" style="color:black;" >
                   	<option selected value="0">不限日期</option>
 					<option value="1">一天內</option>
             		<option value="7">一週內</option>
@@ -605,14 +612,14 @@
 			</div>
 			<div class="w3-col" style="width:40%;padding:25px;">
 				<img src="test圖.jpg" style="width:90%;height:auto"></img>
-				<div class="btn-group">
+				<!--<div class="btn-group">-->
 					<button class="btn btn-primary">language</button>
 					<button class="btn btn-success">fork</button>
 					<button class="btn btn-primary">star</button>
 					<button class="btn btn-info">watch</button>
 					<button class="btn btn-success">pull request</button>
 					<button class="btn btn-info">issue</button>
-				</div>
+				<!--</div>-->
 			</div>
 	</div>
 	
@@ -630,7 +637,7 @@
 	</div>
 	-->
 	
-	<div id="test1" style="padding:0 0 0 35%;"></div>
+	<div id="paging" style="padding:0 0 0 35%;"></div>
 	
 	
 </div>
@@ -675,7 +682,7 @@ layui.use(['laypage', 'layer'], function(){
   
 
 laypage.render({
-    elem: 'test1'
+    elem: 'paging'
     ,count: data.length
     ,jump: function(obj){
       //模拟渲染
