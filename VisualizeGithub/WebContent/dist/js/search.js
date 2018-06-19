@@ -84,6 +84,7 @@ $(document).ready(function(){
 							    +'edges {'
 							      +'node {'
 							        +'... on Repository {'
+							          +'url '
 							          +'owner{'
 							            +'login'
 							          +'}'
@@ -142,6 +143,7 @@ $(document).ready(function(){
 							    +'edges {'
 							      +'node {'
 							        +'... on User {'
+							          +'url '
 							          +'name '
 							          +'login '
 							          +'location '
@@ -185,10 +187,11 @@ $(document).ready(function(){
 			      	data: JSON.stringify({
 			      		query:
 			      			'{'
-							  +'search(query: "'+$("#searchText").val()+' '+language+' '+created+'", type: USER, first: 100'+cursor+') {'
+							  +'search(query: "'+$("#searchText").val()+' '+language+' '+created+'", type: ISSUE, first: 100'+cursor+') {'
 							    +'edges {'
 							      +'node {'
 							        +'... on Issue {'
+							          +'url '
 							          +'repository{'
 							            +'owner {'
 							             +'login '
@@ -268,6 +271,7 @@ function printRepositoryResult(response,length){
 	      		query:
 	      		'query{'
 				  +'repository(owner:"'+login+'",name:"'+name+'"){'
+				    +'name '
 				    +'languages(first:20){'
 				      +'edges{'
 				        +'node{'
@@ -284,7 +288,8 @@ function printRepositoryResult(response,length){
 				// console.log(resp.data.repository.languages.edges)
 				languageArray = [];
 				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
-					languageObject = {"data":resp.data.repository.languages.edges[j].node.name
+					languageObject = {"repository":resp.data.repository.name
+					,"data":resp.data.repository.languages.edges[j].node.name
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(languageObject);
 				}
