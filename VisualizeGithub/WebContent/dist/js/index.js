@@ -108,3 +108,7 @@ $(document).ready(function(){
 		}
 	});
 })
+
+$('#searchButton').click(function(){
+	$('#target').submit();
+})
