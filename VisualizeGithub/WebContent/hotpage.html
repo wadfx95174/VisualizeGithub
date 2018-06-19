@@ -5,13 +5,15 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="http://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet" />
 <link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
 
 </head>
 <body>
@@ -27,10 +29,10 @@
 	<nav id="menu-wrapper" class="nav navbar-default">
 		<div id="menu" class="container ">
 			<ul class="nav navbar-nav">
-                <li class="active"><a data-toggle="tab" href="#star"><font color="red">Star</font></a></li>
-                <li><a data-toggle="tab" href="#fork"><font color="red">fork</font></a></li>
-                <li><a data-toggle="tab" href="#follow"><font color="red">follow</font></a></li>
-				<li><a data-toggle="tab" href="#watch"><font color="red">watch</font></a></li>
+                <li class="active"><a data-toggle="tab" href="#star"><font color="red"><strong>Star</strong></font></a></li>
+                <li><a data-toggle="tab" href="#fork"><font color="red"><strong>fork</strong></font></a></li>
+                <li><a data-toggle="tab" href="#follow"><font color="red"><strong>follow</strong></font></a></li>
+				<li><a data-toggle="tab" href="#watch"><font color="red"><strong>watch</strong></font></a></li>
             </ul>
 		</div> 
 	</nav>
@@ -42,6 +44,17 @@
 		<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
 				<h2 style="padding:0 0 15px 50px;">熱門專案1</h2>
+				
+				<div style="padding:0 0 0 84%;">
+					<select class="form-control" id="date" name="date" style="color:black;width:110px;>
+						<option selected value="1">一天內</option>
+						<option value="7">一週內</option>
+						<option value="30">一個月內</option>
+						<option value="180">半年內</option>
+						<option value="365">一年內</option>
+					</select>
+				</div>
+				
 					<div class="w3-row">					
 						<div>
 							<a href="">
@@ -78,12 +91,11 @@
 					</div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">分析圖</h2>
 					<div>
-						<select class="form-control" style="width:200px;height:35px;">
-						  <option selected>圓餅圖</option>
-						  <option>長條圖</option>						                   
-					   </select>
+						<div class="btn-group">
+							<button class="btn btn-primary">圓餅圖</button>
+							<button class="btn btn-success">長條圖</button>
+						</div>
 					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
 					</div>	
 					
@@ -95,6 +107,18 @@
 		<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
 				<h2 style="padding:0 0 15px 50px;">熱門專案2</h2>
+				
+				<div style="padding:0 0 0 84%;">
+					<select class="form-control" id="date" name="date" style="color:black;width:110px;>
+						<option selected value="1">一天內</option>
+						<option value="7">一週內</option>
+						<option value="30">一個月內</option>
+						<option value="180">半年內</option>
+						<option value="365">一年內</option>
+					</select>
+				</div>
+				
+				
 					<div class="w3-row">					
 						<div>	
 							<a href="">
@@ -131,12 +155,11 @@
 					</div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">分析圖</h2>
 					<div>
-						<select>
-						  <option selected>圓餅圖</option>
-						  <option>長條圖</option>						                   
-					   </select>
+						<div class="btn-group">
+							<button class="btn btn-primary">圓餅圖</button>
+							<button class="btn btn-success">長條圖</button>
+						</div>
 					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
 					</div>					
 				</div>			
@@ -147,6 +170,19 @@
 		<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
 				<h2 style="padding:0 0 15px 50px;">熱門專案3</h2>
+				
+				<div style="padding:0 0 0 84%;">
+					<select class="form-control" id="date" name="date" style="color:black;width:110px;>
+						<option selected value="1">一天內</option>
+						<option value="7">一週內</option>
+						<option value="30">一個月內</option>
+						<option value="180">半年內</option>
+						<option value="365">一年內</option>
+					</select>
+				</div>
+				
+				
+				
 					<div class="w3-row">					
 						<div>	
 							<a href="">
@@ -183,12 +219,11 @@
 					</div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">分析圖</h2>
 					<div>
-						<select>
-						  <option selected>圓餅圖</option>
-						  <option>長條圖</option>						                   
-					   </select>
+						<div class="btn-group">
+							<button class="btn btn-primary">圓餅圖</button>
+							<button class="btn btn-success">長條圖</button>
+						</div>
 					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
 					</div>					
 				</div>			
@@ -199,6 +234,18 @@
 		<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
 				<h2 style="padding:0 0 15px 50px;">熱門專案4</h2>
+				
+				<div style="padding:0 0 0 84%;">
+					<select class="form-control" id="date" name="date" style="color:black;width:110px;>
+						<option selected value="1">一天內</option>
+						<option value="7">一週內</option>
+						<option value="30">一個月內</option>
+						<option value="180">半年內</option>
+						<option value="365">一年內</option>
+					</select>
+				</div>
+				
+				
 					<div class="w3-row">					
 						<div>
 							<a href="">
@@ -235,12 +282,11 @@
 					</div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">分析圖</h2>
 					<div>
-						<select>
-						  <option selected>圓餅圖</option>
-						  <option>長條圖</option>						                   
-					    </select>
+						<div class="btn-group">
+							<button class="btn btn-primary">圓餅圖</button>
+							<button class="btn btn-success">長條圖</button>
+						</div>
 					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
 					</div>					
 				</div>			

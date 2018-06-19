@@ -15,6 +15,11 @@
 <link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
+ <link rel="stylesheet" href="plugins/layui.css"  media="all">
+ <script src="plugins/layui.js" charset="utf-8"></script>
+ <script src="plugins/lay/modules/laypage.js" charset="utf-8"></script>
+  <script src="plugins/lay/modules/layer.js" charset="utf-8"></script>
+
 <!-- searchResult.css -->
 <link href="dist/css/searchResult.css" rel="stylesheet">
 
@@ -89,10 +94,14 @@
 			</div>
 			</div>
 		</div>
-	</div> 
-	<div class="w3-row">
+	</div>
+	
+	<div class="tab-content">
+
+	<div id="page1" >
+	<div class="w3-row" >
 			<div class="w3-col" style="width:60%;padding:25px;">
-			
+			<h2>Page1</h2>
 			
 				
 				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
@@ -146,16 +155,313 @@
 			<div class="w3-col" style="width:40%;padding:25px;">
 				<img src="test圖.jpg" style="width:90%;height:auto"></img>
 				<div class="btn-group">
-				<button class="btn btn-primary">language</button>
-				<button class="btn btn-success">fork</button>
-				<button class="btn btn-primary">star</button>
-				<button class="btn btn-info">watch</button>
-				<button class="btn btn-success">pull request</button>
-				<button class="btn btn-info">issue</button>
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
 			</div>
+	</div>
+	</div>
+	
+	<div id="page2" >
+	<div class="w3-row ">
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page2</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+	</div>
+	</div>
+	
+	
+	<div id="page3" >
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page3</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
 			</div>
 		</div>
-	  </div>
+		</div>
+		
+	<div id="page4" >
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page4</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+	<div id="page5" >
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page5</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+		</div>
+		</div>
+	
+	
+	</div>
+	
+	<!--
+	<div>
+		<ul class="pagination" style="position:absolute;left:45%;" id="myTab">
+			<li><a href="#">&laquo;</a></li>
+			<li><a data-toggle="tab" href="#page1">1</a></li>
+			<li><a data-toggle="tab" href="#page2">2</a></li>
+			<li><a data-toggle="tab" href="#page3">3</a></li>
+			<li><a data-toggle="tab" href="#page4">4</a></li>
+			<li><a data-toggle="tab" href="#page5">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+	-->
+	
+	<div id="test1" style="padding:0 0 0 35%;"></div>
+	
+	
+</div>
+
 </body>
 
 <!-- Function -->
@@ -172,6 +478,52 @@
 		}
 	}
 </script>
+<script>	
+	$(document).ready(function () {
+	$("#myTab a").click(function (e) {
+	e.preventDefault();
+	$(this).tab("show");
+	});
+	})
+</script>
 
+<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  laypage.render({
+  elem: 'test1'
+  ,count: 165 //数据总数，从服务端得到
+  ,jump: function(obj, first){
+    //obj包含了当前分页的所有参数，比如：
+    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+    console.log(obj.limit); //得到每页显示的条数
+    
+    //首次不执行
+    if(!first){
+      //do something
+    }
+	
+	if(obj.curr==2||obj.curr==3||obj.curr==4)
+	{
+		
+		
+		$(document).ready(function() {
+		$("html, body").animate({scrollTop: $("#page"+"2").offset().top }, {duration: 500,easing: "swing"});
+		return false;
+		});
+		
+		
+		
+		
+		
+	}
+  }
+});
+  
+  
+});
+</script>
 
 </html>
