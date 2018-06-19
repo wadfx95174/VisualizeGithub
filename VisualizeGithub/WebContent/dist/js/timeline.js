@@ -63,7 +63,7 @@ function getVersionIdArray(timelineData)
     for (var i = 0; i < timelineData.length; i++)
     {
         if (timelineData[i].type == 'background' && timelineData[i].content != '')
-            versionIdArray.push({id: timelineData[i].id, version: timelineData[i].content});
+            versionIdArray.push({id: timelineData[i].id, version: timelineData[i].content, start: timelineData[i].start, end: timelineData[i].end});
     }
     return versionIdArray;
 }
@@ -75,7 +75,11 @@ function draw(container, data)
 }
 
 // 畫面移動至選定 id 位置
-function moveToVersion(id)
+function moveToVersion(start, end)
 {
-    timeline.focus(id, {duration: 1000});
+    console.log(start);
+    console.log(end);
+    timeline.setWindow(start, end);
+    // timeline.fit();
+    // timeline.focus(id, {duration: 1000});
 }
