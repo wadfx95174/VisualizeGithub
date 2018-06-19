@@ -33,7 +33,7 @@
 			<p>
             <label style="color:#FFF;">搜尋條件:
  
-               <select class="form-control" id="type" name="type" style="color:black;" onchange="change(this.value)">
+               <select class="form-control" id="type" name="type" style="color:black;" onchange="changeType(this.value)">
                   	<option selected value="repositories">專案名稱</option>
 					<option value="code">程式碼</option>
 					<option value="commits">提交</option>
@@ -89,9 +89,16 @@
 			</div>
 			</div>
 		</div>
-	</div> 
-	<div class="w3-row">
+	</div>
+	
+	<div class="tab-content">
+
+	<div id="page1" class=" tab-pane fade  in active">
+	<div class="w3-row" >
 			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page1</h2>
+			
+				
 				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
 					<div class="w3-col" style="width:60%;height:150px">
 						<a href="">
@@ -102,7 +109,7 @@
 					<div class="w3-col" style="width:5%;height:150px"></div>
 					<div class="w3-col" style="width:30%;height:150px">
 						<a href="">
-						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
 						</a>						
 					</div>					
 				</div>
@@ -139,16 +146,327 @@
 				
 			</div>
 			  
+			 
 			<div class="w3-col" style="width:40%;padding:25px;">
 				<img src="test圖.jpg" style="width:90%;height:auto"></img>
-				<button>language</button>
-				<button>fork</button>
-				<button>star</button>
-				<button>watch</button>
-				<button>pull request</button>
-				<button>issue</button>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+	</div>
+	</div>
+	
+	<div id="page2" class=" tab-pane fade ">
+	<div class="w3-row ">
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page2</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+	</div>
+	</div>
+	
+	
+	<div id="page3" class=" tab-pane fade">
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page3</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
 			</div>
 		</div>
-	  </div>
+		</div>
+		
+	<div id="page4" class=" tab-pane fade">
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page4</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+	<div id="page5" class=" tab-pane fade">
+	<div class="w3-row" >
+			<div class="w3-col" style="width:60%;padding:25px;">
+			<h2>Page5</h2>
+			
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>		
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%;"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>	
+						</a>						
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>	
+						</a>						
+					</div>					
+				</div>
+				
+				<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">
+					<div class="w3-col" style="width:60%;height:150px">
+						<a href="">
+						<p>專案名稱:XXXXXXXXXX</p>
+						<p>簡介:123456789</p>
+						</a>
+					</div>
+					<div class="w3-col" style="width:5%;height:150px"></div>
+					<div class="w3-col" style="width:30%;height:150px">
+						<a href="">
+						<img src="test圖.jpg" style="width:auto;height:95%"></img>
+						</a>						
+					</div>					
+				</div>
+				
+			</div>
+			  
+			 
+			<div class="w3-col" style="width:40%;padding:25px;">
+				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<div class="btn-group">
+					<button class="btn btn-primary">language</button>
+					<button class="btn btn-success">fork</button>
+					<button class="btn btn-primary">star</button>
+					<button class="btn btn-info">watch</button>
+					<button class="btn btn-success">pull request</button>
+					<button class="btn btn-info">issue</button>
+				</div>
+			</div>
+		</div>
+		</div>
+	
+	
+	</div>
+	
+	<div>
+		<ul class="pagination" style="position:absolute;left:45%;">
+			<li><a href="#">&laquo;</a></li>
+			<li><a data-toggle="tab" href="#page1">1</a></li>
+			<li><a data-toggle="tab" href="#page2">2</a></li>
+			<li><a data-toggle="tab" href="#page3">3</a></li>
+			<li><a data-toggle="tab" href="#page4">4</a></li>
+			<li><a data-toggle="tab" href="#page5">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+</div>
+
 </body>
+
+<!-- Function -->
+<script>
+	function changeType(input)
+	{
+		if(input=="commits" || input=="topics")
+		{
+			$("#language").hide();
+		}
+		else
+		{
+			$("#language").show();
+		}
+	}
+</script>
+
+
 </html>
