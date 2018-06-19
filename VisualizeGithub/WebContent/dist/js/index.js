@@ -6,7 +6,7 @@ $(document).ready(function(){
     	url: "https://api.github.com/graphql",
     	contentType: "application/json",
       	headers: {
-        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+        	Authorization: "bearer 7575477915812a146b842b9ff21b60c0e8f1f4aa"
       	},
       	data: JSON.stringify({
       		query:
@@ -25,6 +25,7 @@ $(document).ready(function(){
 		}),
 		cache:false,
 		success:function(response){
+			// console.log(response)
 			var temp;
 			for(var i = 0;i < 3;i++){
 				if(i==0){
