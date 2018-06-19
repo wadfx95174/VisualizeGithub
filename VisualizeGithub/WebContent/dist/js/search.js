@@ -1,6 +1,27 @@
 
 var language,pushed,created;
 $(document).ready(function(){
+	
+	/*for(var i=0;i<15;i++)
+{
+	$("#pageResult").append('<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+				+'<div class="w3-col" style="width:60%;height:150px">'
+						+'<a href="">'
+						+'<p>專案名稱:XXXXXXXXXX</p>'
+						+'<p>簡介:123456789</p>'
+						+'</a>'
+					+'</div>'
+					+'<div class="w3-col" style="width:5%;height:150px"></div>'
+					+'<div class="w3-col" style="width:30%;height:150px">'
+						+'<a href="">'
+						+'<img src="test圖.jpg" style="width:auto;height:95%;"></img>'
+						+'</a>'					
+					+'</div>'	
+				+'</div>')
+}*/
+	
+	
+	
 	language="";
 	pushed="";
 	//append select的option
@@ -222,6 +243,7 @@ var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[];
 //大圖要的資料，user
 var allUserIssueArray=[],allUserFollowersArray=[],allUserFollowingArray=[],allUserRepositoriesArray=[];
 var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
+
 //大圖要的資料，issue
 var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
@@ -404,6 +426,7 @@ function printUserResult(response,length){
 		});
 	}
 }
+
 //輸出"issue"搜尋結果
 function printIssueResult(response,Length){
 	var title;

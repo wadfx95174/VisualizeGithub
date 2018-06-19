@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Visualize Github</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="http://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet" />
+<link href="plugins/hotpage/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="plugins/hotpage/fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!-- searchResult.css -->
+<link href="dist/css/searchResult.css" rel="stylesheet">
+
+</head>
+
+
+<script>
+function changeImg(x)
+{	if(x=="bar_chart")
+	{
+		var img = document.getElementById("123");
+		img.setAttribute("src","長條圖.png")
+	}
+	else
+	{
+		var img = document.getElementById("123");
+		img.setAttribute("src","圓餅圖.png")
+	}
+}
+</script>
+
+<body bgcolor="#DDDDDD">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">visualizeGithub</a></h1>				
+			</div>
+		</div>
+	</div>
+	<div id="menu-wrapper">
+	<nav id="menu-wrapper" class="nav navbar-default">
+		<div id="menu" class="container ">
+			<ul class="nav navbar-nav">
+                <li class="active"><a data-toggle="tab" href="#commit"><font color="red"><strong>Commit</strong></font></a></li>
+                <li><a data-toggle="tab" href="#analysis"><font color="red"><strong>Analysis</strong></font></a></li>
+            </ul>
+		</div> 
+	</nav>
+	</div>
+	
+	<div id="commit" class=" tab-pane fade in active" >
+		<div class="w3-row" style="height:0px;">
+			<table align="center" border=1 width="85%" height=200px>
+				<caption><div align="left"><h1>Commit</h1></div></caption>
+　				<tr><td align="center"><img src= "折線圖.jpg" style="height:300px;width:100%;"></td></tr>
+			</table>			
+		</div>
+	</div>
+	
+	<div id="analysis" class=" tab-pane fade  ">
+		<div class="w3-col" style="width:70%;padding:25px;">
+			<div>
+				<table >
+　					<tr><td ><img src= "圓餅圖.png" style="height:410px;width:100%" id="123">
+					</td></tr>
+					<tr><td>
+						<form action="" align="center">
+							<input type="radio" name="type" value="pie_chart" onchange="changeImg(this.value)">圓餅圖
+							<input type="radio" name="type" value="bar_chart" onchange="changeImg(this.value)">長條圖
+						</form>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+	<div class="w3-col" style="width:20%;padding:25px;">
+		分析：
+		<select class="form-control">
+			<option value="language">語言</option>
+			<option value="release">release</option>
+
+		</select>
+		
+		
+		
+		<table border=1 width=310px  height=300px>
+			<tr><td>
+				文字呈現123
+			</tr></td>
+		</table>
+	</div>
+
+			
+		</div>
+	</div>
+	
+	
+    
+</body>
+</html>
