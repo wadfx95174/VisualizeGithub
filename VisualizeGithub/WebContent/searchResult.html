@@ -24,6 +24,9 @@
 <!-- searchResult.css -->
 <link href="dist/css/searchResult.css" rel="stylesheet">
 
+<link href="dist/css/d3.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="dist/js/d3.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -604,14 +607,16 @@
 			
 			</div>
 			<div class="w3-col" style="width:40%;padding:25px;">
-				<img src="test圖.jpg" style="width:90%;height:auto"></img>
+				<!-- <img src="test圖.jpg" style="width:90%;height:auto"></img> -->
+				<div id="bigChart"></div>
+				<div id="color-legend-area"></div>
 				<div class="btn-group">
-					<button class="btn btn-primary">language</button>
-					<button class="btn btn-success">fork</button>
-					<button class="btn btn-primary">star</button>
-					<button class="btn btn-info">watch</button>
-					<button class="btn btn-success">pull request</button>
-					<button class="btn btn-info">issue</button>
+					<button class="btn btn-primary" onclick="changeToLanguage()">language</button>
+					<button class="btn btn-success" onclick="changeToFork()">fork</button>
+					<button class="btn btn-primary" onclick="changeToStar()">star</button>
+					<button class="btn btn-info" onclick="changeToWatch()">watch</button>
+					<button class="btn btn-success" onclick="changeToPullRequest()">pull request</button>
+					<button class="btn btn-info" onclick="changeToIssue()">issue</button>
 				</div>
 			</div>
 	</div>

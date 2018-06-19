@@ -30,6 +30,7 @@ $(document).ready(function(){
 	language="";
 	pushed="";
 	doingSearch();	
+
 	//append select的option
 	//搜尋按鈕
 	
@@ -271,6 +272,8 @@ function printRepositoryResult(response,length){
 	var name,login;
 	console.log(response);
 	
+	var promises = [];
+
 	//總共有幾個page
 	for(var i = 0;i < length;i++){
 		name = response.data.search.edges[i].node.name;
@@ -326,7 +329,7 @@ function printRepositoryResult(response,length){
 			}
 		});
 		//拿所有搜尋結果的不同資料的數量
-		$.ajax({
+		var promise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -369,8 +372,12 @@ function printRepositoryResult(response,length){
 				error:function(e){
 					console.log("get watch error");
 				}
-		});
-	}
+		})
+		promises[i] = promise;
+	};
+	Promise.all(promises).then(function(){
+		drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400);
+	})
 }
 //輸出"user"搜尋結果
 function printUserResult(response,length){
@@ -464,3 +471,22 @@ function printIssueResult(response,Length){
 		allIssueCommentArray.push(object);
 	}
 }
+
+function changeToLanguage(){
+	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400)
+};
+function changeToFork(){
+	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400)
+};
+function changeToStar(){
+	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400)
+};
+function changeToWatch(){
+	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400)
+};
+function changeToPullRequest(){
+	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
+};
+// function changeToIssue(){
+// 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
+// };
