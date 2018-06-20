@@ -86,6 +86,9 @@ function doingSearch(){
 	if(pType == "REPOSITORY"){
 		//跑搜尋結果。一個query只能抓100個edge，所以要用迴圈，然後每次都抓該組的pageInfo中的hasNextPage，去判斷
 		//如果hasNextPage是true，就要把endCursor放在after中
+		console.log(pText)
+		console.log(language)
+		console.log(pushed)
 		while(check){
 			$.ajax({
 		    	method: "POST",
@@ -130,7 +133,7 @@ function doingSearch(){
 						+'}'
 				}),
 				success:function(response){
-					// console.log(response)
+					console.log(response)
 					// console.log(response.data.search.pageInfo.hasNextPage)
 					check = response.data.search.pageInfo.hasNextPage;
 					cursor = ',after:"'+response.data.search.pageInfo.endCursor+'"';
@@ -192,7 +195,7 @@ function doingSearch(){
 		}
 	}
 	//issue
-	else {
+	else if(pType == "ISSUE"){
 		while(check){
 			$.ajax({
 		    	method: "POST",
@@ -207,7 +210,7 @@ function doingSearch(){
 		      	data: JSON.stringify({
 		      		query:
 		      			'{'
-						  +'search(query: "'+pText+' '+language+' '+created+'", type: USER, first: 100'+cursor+') {'
+						  +'search(query: "'+pText+' '+language+' '+created+'", type: ISSUE, first: 100'+cursor+') {'
 						    +'edges {'
 						      +'node {'
 						        +'... on Issue {'
@@ -290,6 +293,9 @@ function printRepositoryResult(response,length){
 	      		query:
 	      		'query{'
 				  +'repository(owner:"'+login+'",name:"'+name+'"){'
+				    +'owner {'
+				      +'login'
+				    +'}'
 				    +'name '
 				    +'languages(first:20){'
 				      +'edges{'
