@@ -78,7 +78,7 @@ function doingSearch(){
 	//設定程式語言
 	if(pL!="")language = "language:"+pL;
 	//設定時間限制
-	if(pDate!=""){
+	if(pDate!="" && pDate!=0){
 		pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
 		created = "created:>"+Year+"-"+Mon+"-"+Day;
 	}
@@ -101,7 +101,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "bearer 141e5228f30dc778302457c79b0a58d4a66d246e"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -295,7 +295,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "bearer 141e5228f30dc778302457c79b0a58d4a66d246e"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -354,7 +354,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253 "
+	        	Authorization: "bearer 141e5228f30dc778302457c79b0a58d4a66d246e"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -471,7 +471,7 @@ function printUserResult(response,length){
 				}),
 				cache:false,
 				success:function(resp){
-					// console.log(resp);
+					//console.log(resp);
 					//pullrequest
 					object = {"data":resp.data.user.name,"value":resp.data.user.pullRequests.totalCount};
 					allUserPullRequestArray.push(object);
