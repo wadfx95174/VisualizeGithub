@@ -536,6 +536,7 @@ function printIssueResult(response,Length){
 	console.log(response);
 	//總共有幾個page
 	for(var i = 0;i < length;i++){
+		// if(response.data.search.edges[i].node)
 		title = response.data.search.edges[i].node.title;
 
 		//participant
@@ -548,6 +549,7 @@ function printIssueResult(response,Length){
 		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
 		allIssueCommentArray.push(object);
 	}
+	console.log(allIssueParticipantArray);
 }
 
 function changeToLanguage(){
