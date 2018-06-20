@@ -82,7 +82,7 @@ function doingSearch(){
 	//設定程式語言
 	if(pL!="")language = "language:"+pL;
 	//設定時間限制
-	if(pDate!=""){
+	if(pDate!="" && pDate!=0){
 		pushed = "pushed:>"+Year+"-"+Mon+"-"+Day;
 		created = "created:>"+Year+"-"+Mon+"-"+Day;
 	}
