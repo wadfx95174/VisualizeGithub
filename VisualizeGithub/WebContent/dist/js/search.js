@@ -6,6 +6,10 @@ var pType;
 var pL;
 var pDate;
 var pText;
+var date = new Date();
+var Year = date.getFullYear()
+var Mon = date.getMonth() + 1
+var Day = date.getDate();
 
 function get(name)
 {
@@ -354,7 +358,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253 "
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -430,7 +434,7 @@ function printUserResult(response,length){
 	// //總共有幾個page
 	// console.log(response);
 	// console.log(length);
-	for(var i = 0;i < 30;i++){
+	for(var i = 0;i < length;i++){
 		login = response.data.search.edges[i].node.login;
 		//拿所有搜尋結果的不同資料的數量，然後塞入陣列
 		$.ajax({
@@ -438,12 +442,13 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253 "
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
 	      		'query{'
 					  +'user(login:"'+login+'"){'
+					  	+'login '
 					  	+'name '
 					  	+'pullRequests{'
 					      +'totalCount'
@@ -472,32 +477,55 @@ function printUserResult(response,length){
 				cache:false,
 				success:function(resp){
 					// console.log(resp);
+					// console.log(resp.data.user.login);
 					//pullrequest
-					object = {"data":resp.data.user.name,"value":resp.data.user.pullRequests.totalCount};
-					allUserPullRequestArray.push(object);
+					if (resp.data.user.pullRequests.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''), "value":resp.data.user.pullRequests.totalCount};
+						allUserPullRequestArray.push(object);
+					}
 					//issue
-					object = {"data":resp.data.user.name,"value":resp.data.user.issues.totalCount};
-					allUserIssueArray.push(object);
+					if (resp.data.user.issues.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.issues.totalCount};
+						allUserIssueArray.push(object);
+					}
 					//followers
-					object = {"data":resp.data.user.name,"value":resp.data.user.followers.totalCount};
-					allUserFollowersArray.push(object);
+					if (resp.data.user.followers.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.followers.totalCount};
+						allUserFollowersArray.push(object);
+					}
 					//following
-					object = {"data":resp.data.user.name,"value":resp.data.user.following.totalCount};
-					allUserFollowingArray.push(object);
+					if (resp.data.user.following.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.following.totalCount};
+						allUserFollowingArray.push(object);
+					}
 					//star
-					object = {"data":resp.data.user.name,"value":resp.data.user.starredRepositories.totalCount};
-					allUserStarArray.push(object);
+					if (resp.data.user.starredRepositories.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.starredRepositories.totalCount};
+						allUserStarArray.push(object);
+					}
 					//repositories
-					object = {"data":resp.data.user.name,"value":resp.data.user.repositories.totalCount};
-					allUserRepositoriesArray.push(object);
+					if (resp.data.user.repositories.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.repositories.totalCount};
+						allUserRepositoriesArray.push(object);
+					}
 					//watching
-					object = {"data":resp.data.user.name,"value":resp.data.user.watching.totalCount};
-					allUserWatchingArray.push(object);
+					if (resp.data.user.watching.totalCount != 0)
+					{
+						object = {"data":resp.data.user.login + (resp.data.user.name != null && resp.data.user.name != '' ? ('/' + resp.data.user.name) : ''),"value":resp.data.user.watching.totalCount};
+						allUserWatchingArray.push(object);
+					}
 				},
 				error:function(e){
 					console.log("get watch error");
 				}
 		});
+		searchResultArray.push({"name": response.data.search.edges[i].node.login + '/' + response.data.search.edges[i].node.name, "location": response.data.search.edges[i].node.location, "url": response.data.search.edges[i].node.url, "bio": response.data.search.edges[i].node.bio});
 	}
 }
 
@@ -553,12 +581,6 @@ layui.use(['laypage', 'layer'], function(){
 	,layer = layui.layer;
 	var data;
 	data = searchResultArray
-	// switch(pType)
-	// {
-	// 	case 'REPOSITORY': ; break;
-	// 	case 'USER': data = ;
-	// 	case 'ISSUE': data = ;
-	// }
 	 
   // var data = [
   //   {title:'1', description:'121'},
@@ -590,29 +612,56 @@ layui.use(['laypage', 'layer'], function(){
 			document.getElementById('pageResult').innerHTML = function(){
 		        var arr = [];
 		        thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
-		        layui.each(thisData, function(index, item){
+				switch(pType)
+				{
+					case 'REPOSITORY': 
+				        layui.each(thisData, function(index, item){
+				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+											+'<div class="w3-col" style="width:60%;height:150px">'
+												+'<a href="' + item.url + '">'
+												+'<h2>'+item.title+'</h2><br>'
+												+'<p>'+ (item.description != null ? item.description : '') +'</p><br>'
+												+'</a>';
+							for (var i = 0; i < item.topic.length; i++)
+							{
+								pushObj += item.topic[i].node.topic.name + ' ';
+							}
 
-		        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
-									+'<div class="w3-col" style="width:60%;height:150px">'
-										+'<a href="' + item.url + '">'
-										+'<h2>'+item.title+'</h2><br>'
-										+'<p>'+ (item.description != null ? item.description : '') +'</p><br>'
-										+'</a>';
-					for (var i = 0; i < item.topic.length; i++)
-					{
-						pushObj += item.topic[i].node.topic.name + ' ';
-					}
+							pushObj += '</div>'
+										+'<div class="w3-col" style="width:5%;height:150px"></div>'
+										+'<div class="w3-col" style="width:30%;height:150px">'
+											+'<a href="analysis.html?name=' + item.title + '">'
+											+'<div id="smallChart-' + index + '"></div>'
+											+'</a>'					
+										+'</div>'	
+									+'</div>';
+				            arr.push(pushObj);
+			        	});
+						break;
+					case 'USER':
+				        layui.each(thisData, function(index, item){
+				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+											+'<div class="w3-col" style="width:60%;height:150px">'
+												+'<a href="' + item.url + '">'
+												+'<h2>'+item.name+'</h2><br>'
+												+'<p>'+ (item.bio != null ? item.bio : '') +'</p><br>'
+												+'<p>' + item.location + '</p>'
+												+'</a>'
+											+ '</div>'
+											+'<div class="w3-col" style="width:5%;height:150px"></div>'
+											+'<div class="w3-col" style="width:30%;height:150px">'
+												+'<a href="analysis.html?name=' + item.title + '">'
+												+'<div id="smallChart-' + index + '"></div>'
+												+'</a>'					
+											+'</div>'	
+										+'</div>';
+				            arr.push(pushObj);
+			        	});
+						break;
+					case 'ISSUE':
 
-					pushObj += '</div>'
-								+'<div class="w3-col" style="width:5%;height:150px"></div>'
-								+'<div class="w3-col" style="width:30%;height:150px">'
-									+'<a href="analysis.html?name=' + item.title + '">'
-									+'<div id="smallChart-' + index + '"></div>'
-									+'</a>'					
-								+'</div>'	
-							+'</div>';
-		            arr.push(pushObj);
-	        	});
+						break;
+				}
        			return arr.join('');
 	    	}();
 
