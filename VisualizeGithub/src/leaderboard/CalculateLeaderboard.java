@@ -1,4 +1,3 @@
-
 package leaderboard;
 
 import java.io.BufferedReader;
@@ -198,6 +197,5 @@ public class CalculateLeaderboard {
 		}
 		return leaderboards;
 	}
-	
 }
 

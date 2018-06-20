@@ -63,41 +63,41 @@ public class LeaderboardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext sc = request.getServletContext();
 		  
-		  GsonBuilder builder = new GsonBuilder();
-		  Gson gson = builder.setPrettyPrinting().create();
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.setPrettyPrinting().create();
 		  
-		  response.setContentType("application/json");
+		response.setContentType("application/json");
 		  
 		  
 		  switch(request.getParameter("action"))
 		  {
 		   case "starinWeek":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinWeekleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinWeekleaderboards")));
+			   break;
 		   case "starinMonth":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinMonthleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinMonthleaderboards")));
+			   break;
 		   case "starinHalfYear":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinHalfYearleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinHalfYearleaderboards")));
+			   break;
 		   case "starinYear":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinYearleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinYearleaderboards")));
+			   break;
 		   case "forkinWeek":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinWeekleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinWeekleaderboards")));
+			   break;
 		   case "forkinMonth":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinMonthleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinMonthleaderboards")));
+			   break;
 		   case "forkinHalfYear":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinHalfYearleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinHalfYearleaderboards")));
+			   break;
 		   case "forkinYear":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinYearleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("forkinYearleaderboards")));
+			   break;
 		   case "follow":
-		    response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("followleaderboards")));
-		    break;
+			   response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("followleaderboards")));
+			   break;
 		   default:break;
 		  }
 	}
