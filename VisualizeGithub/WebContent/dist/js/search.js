@@ -264,7 +264,7 @@ function doingSearch(){
 var languageArray=[];
 //大圖要的資料，repository
 var allRepositoryLanguageArray=[],allRepositoryForkArray=[],allRepositoryStarArray=[];
-var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[];
+var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[],allRepositoryIssueArray=[];
 //大圖要的資料，user
 var allUserIssueArray=[],allUserFollowersArray=[],allUserFollowingArray=[],allUserRepositoriesArray=[];
 var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
@@ -368,6 +368,9 @@ function printRepositoryResult(response,length){
 					    +'pullRequests{'
 					      +'totalCount'
 					    +'}'
+					    +'issues{'
+					      +'totalCount'
+					    +'}'
 					  +'}'
 					+'}'
 				}),
@@ -385,6 +388,10 @@ function printRepositoryResult(response,length){
 					//pullrequest
 					object = {"data":resp.data.repository.name,"value":resp.data.repository.pullRequests.totalCount};
 					allRepositoryPullRequestArray.push(object);
+					//issue
+					object = {"data":resp.data.repository.name,"value":resp.data.repository.issues.totalCount};
+					allRepositoryIssueArray.push(object);
+					
 				},
 				error:function(e){
 					console.log("get watch error");
@@ -415,7 +422,7 @@ function printRepositoryResult(response,length){
 function printUserResult(response,length){
 	var login;
 	//總共有幾個page
-	for(var i = 0;i < length;i++){
+	for(var i = 0;i < 30;i++){
 		login = response.data.search.edges[i].node.login;
 		//拿所有搜尋結果的不同資料的數量，然後塞入陣列
 		$.ajax({
@@ -456,6 +463,7 @@ function printUserResult(response,length){
 				}),
 				cache:false,
 				success:function(resp){
+					console.log(resp);
 					//pullrequest
 					object = {"data":resp.data.user.name,"value":resp.data.user.pullRequests.totalCount};
 					allUserPullRequestArray.push(object);
