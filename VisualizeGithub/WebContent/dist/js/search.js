@@ -422,7 +422,7 @@ function printRepositoryResult(response,length){
 function printUserResult(response,length){
 	var login;
 	//總共有幾個page
-	for(var i = 0;i < length;i++){
+	for(var i = 0;i < 30;i++){
 		login = response.data.search.edges[i].node.login;
 		//拿所有搜尋結果的不同資料的數量，然後塞入陣列
 		$.ajax({
@@ -463,6 +463,7 @@ function printUserResult(response,length){
 				}),
 				cache:false,
 				success:function(resp){
+					console.log(resp);
 					//pullrequest
 					object = {"data":resp.data.user.name,"value":resp.data.user.pullRequests.totalCount};
 					allUserPullRequestArray.push(object);
