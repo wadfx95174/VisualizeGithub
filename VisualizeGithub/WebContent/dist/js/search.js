@@ -2,6 +2,7 @@
 var language,pushed,created;
 
 // parameter
+var token = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 var pType;
 var pL;
 var pDate;
@@ -105,7 +106,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -164,7 +165,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -212,7 +213,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -300,7 +301,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -323,7 +324,7 @@ function printRepositoryResult(response,length){
 			}),
 			cache:false,
 			success:function(resp){
-				// console.log(resp);
+				 console.log(resp);
 				// console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
 
 				languageArray = [];
@@ -359,7 +360,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -443,7 +444,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -621,7 +622,7 @@ layui.use(['laypage', 'layer'], function(){
 				        layui.each(thisData, function(index, item){
 				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
 											+'<div class="w3-col" style="width:60%;height:175px">'
-												+'<a href="' + item.url + '">'
+												+'<a href="' + item.url + '" target="_blank">'
 												+'<h2 id="title_'+index+'" class="ellipsis projectName">'+item.title+'</h2><br>'
 												+'<p class="ellipsis2">'+ (item.description != null ? item.description : '') +'</p><br>'
 												+'</a>';
@@ -645,7 +646,7 @@ layui.use(['laypage', 'layer'], function(){
 				        layui.each(thisData, function(index, item){
 				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
 											+'<div class="w3-col" style="width:60%;height:175px">'
-												+'<a href="' + item.url + '">'
+												+'<a href="' + item.url + '" target="_blank">'
 												+'<h2 id="title_'+index+'" class="ellipsis projectName">'+item.name+'</h2><br>'
 												+'<p class="ellipsis2">'+ (item.bio != null ? item.bio : '') +'</p><br>'
 												+'<p>' + item.location + '</p>'
