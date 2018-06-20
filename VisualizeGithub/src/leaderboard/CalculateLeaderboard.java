@@ -14,6 +14,8 @@ import com.google.gson.GsonBuilder;
 
 public class CalculateLeaderboard {
 	private static final String accessToken= "access_token=727d34d1872545e5859ec1c969dea1f93a20d253";
+	private static final String accessToken2="access_token=9c1930aaac9b8ca8057f32640b52e0fb2fafec2f";
+	private static final String accessToken3="f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f";
 	public CalculateLeaderboard() {}
 	//要改成ArrayList
 //	public void CalStar() throws IOException {
@@ -95,7 +97,7 @@ public class CalculateLeaderboard {
 		ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 		
 		//Create HttpURLConnection 
-		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&per_page=100&"+accessToken).openConnection();
+		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&per_page=100&"+accessToken2).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
 		//Read line by line
@@ -111,7 +113,7 @@ public class CalculateLeaderboard {
 		
 		//api只允許存取前1000筆資料，所以page最多只能到10
 		for(int i = 2 ;i <= 10;i++) {
-			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&page="+i+"&per_page=100&"+accessToken).openConnection();
+			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&page="+i+"&per_page=100&"+accessToken2).openConnection();
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(httpcon2.getInputStream()));
 			
 			StringBuilder responseSB2 = new StringBuilder();
@@ -142,7 +144,9 @@ public class CalculateLeaderboard {
 		ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 		
 		//Create HttpURLConnection 
-		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&per_page=100&"+accessToken).openConnection();
+		HttpURLConnection httpcon = (HttpURLConnection) new URL(
+				"https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&per_page=100&"
+				+accessToken3).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
 		//Read line by line
@@ -157,7 +161,7 @@ public class CalculateLeaderboard {
 		
 		//api只允許存取前1000筆資料，所以page最多只能到10
 		for(int i = 2 ;i <= 10;i++) {
-			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&page="+i+"&per_page=100&"+accessToken).openConnection();
+			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&page="+i+"&per_page=100&"+accessToken3).openConnection();
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(httpcon2.getInputStream()));
 			
 			StringBuilder responseSB2 = new StringBuilder();
@@ -174,7 +178,7 @@ public class CalculateLeaderboard {
 		//用每個user的login去抓每個user的follow
 		for(String log : login) {
 			//Create HttpURLConnection 
-			HttpURLConnection httpcon3 = (HttpURLConnection) new URL("https://api.github.com/users/"+log.split("\"")[1]+"?"+accessToken).openConnection();
+			HttpURLConnection httpcon3 = (HttpURLConnection) new URL("https://api.github.com/users/"+log.split("\"")[1]+"?"+accessToken3).openConnection();
 			BufferedReader in3 = new BufferedReader(new InputStreamReader(httpcon3.getInputStream()));
 			
 			//Read line by line

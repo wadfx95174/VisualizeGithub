@@ -105,7 +105,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -538,16 +538,22 @@ function printIssueResult(response,Length){
 	for(var i = 0;i < length;i++){
 		// if(response.data.search.edges[i].node)
 		title = response.data.search.edges[i].node.title;
-
-		//participant
-		object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
-		allIssueParticipantArray.push(object);
-		//label
-		object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
-		allIssueLabelArray.push(object);
-		//comment
-		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
-		allIssueCommentArray.push(object);
+		console.log(response.data.search.edges[i].node);
+		if (Object.keys(response.data.search.edges[i].node).length == 0){
+			console.log("empty");
+		}
+		else{
+			//participant
+			object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
+			allIssueParticipantArray.push(object);
+			//label
+			object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
+			allIssueLabelArray.push(object);
+			//comment
+			object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
+			allIssueCommentArray.push(object);
+		}
+		
 	}
 	console.log(allIssueParticipantArray);
 }

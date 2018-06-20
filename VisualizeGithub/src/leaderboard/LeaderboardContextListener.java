@@ -58,15 +58,15 @@ public class LeaderboardContextListener implements ServletContextListener{
 				try {
 					starinWeekleaderboards = cl.CalStar(inWeek);
 					starinMonthleaderboards = cl.CalStar(inMonth);
-					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
-					starinYearleaderboards = cl.CalStar(inYear);
-					
-					forkinWeekleaderboards = cl.CalFork(inWeek);
-					forkinMonthleaderboards = cl.CalFork(inMonth);
-					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
-					forkinYearleaderboards = cl.CalFork(inYear);
-					
-					followleaderboards = cl.CalFollow();
+//					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
+//					starinYearleaderboards = cl.CalStar(inYear);
+//					
+//					forkinWeekleaderboards = cl.CalFork(inWeek);
+//					forkinMonthleaderboards = cl.CalFork(inMonth);
+//					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
+//					forkinYearleaderboards = cl.CalFork(inYear);
+//					
+//					followleaderboards = cl.CalFollow();
 					
 					
 					sc.setAttribute("starinWeekleaderboards",starinWeekleaderboards);

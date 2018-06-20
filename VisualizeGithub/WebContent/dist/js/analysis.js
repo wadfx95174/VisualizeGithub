@@ -76,7 +76,7 @@ $(document).ready(function(){
 					+'}'
 			}),
 			success:function(response){
-				// console.log(response)
+				console.log(response)
 				// console.log(response.data.search.pageInfo.hasNextPage)
 				check = response.data.repository.releases.pageInfo.hasNextPage;
 				cursor = ',after:"'+response.data.repository.releases.pageInfo.endCursor+'"';
