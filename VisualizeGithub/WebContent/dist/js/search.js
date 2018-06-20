@@ -552,12 +552,13 @@ layui.use(['laypage', 'layer'], function(){
 	var laypage = layui.laypage
 	,layer = layui.layer;
 	var data;
-	switch(pType)
-	{
-		case 'REPOSITORY': data = searchResultArray; break;
-		case 'USER': data = ;
-		case 'ISSUE': data = ;
-	}
+	data = searchResultArray
+	// switch(pType)
+	// {
+	// 	case 'REPOSITORY': ; break;
+	// 	case 'USER': data = ;
+	// 	case 'ISSUE': data = ;
+	// }
 	 
   // var data = [
   //   {title:'1', description:'121'},
