@@ -3,9 +3,10 @@
 // var radius = width / 2;
 var state = 0;	// 按鈕畫圖方式  0:長條  1:圓餅  2:甜甜圈
 
-var data1 = [{data:'英國',value:90},{data:'美國',value:70},{data:'法國',value:90},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62}]; //測資1
+var data1 = [{data:'英國',value:90},{data:'美國',value:70},{data:'法國',value:90},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62},{data:'我是零',value:0}]; //測資1
 var data2 = [{data:'英國',value:90},{data:'美國',value:70},{data:'法國',value:40},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62},{data:'美國',value:70},{data:'法國',value:40},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62}]; //測資2
 var data3 = [{data:'英國',value:140},{data:'美國',value:180},{data:'法國',value:100}]; //測資3
+var data4 = [{data: "freeCodeCamp", value: 292255},{data: "vega", value: 6043},{data: "spritejs", value: 289},{data: "iClient-JavaScript", value: 173},{data: "D3", value: 0},{data: "Stadium1", value: 0},{data: "D3_study", value: 0},{data: "D3HW", value: 0},{data: "d3_DataJournalism", value: 0},{data: "hw-16-D3", value: 0},{data: "D3HW", value: 0},{data: "D3-Practice", value: 0},{data: "cs-alumni-statistics", value: 0},{data: "D3HW", value: 0},{data: "D3.js-Homework", value: 0},{data: "interactiveBarGraph", value: 0}];
 var podiumData = [{data:'',value:140},{data:'',value:180},{data:'',value:100}]; //獎台資料
 
 var currentData = data1;
@@ -19,9 +20,23 @@ window.addEventListener('load', start, false);
 
 function start()
 {
-	drawBar(currentData, selectedArea, 400, 400);
-	drawPie(data2, '#area-1', 100, 100);
-	drawPie(data3, '#area-2', 100, 100);
+	// drawPie(data1, '#chart', 400, 400);
+	// drawPie(data2, '#bigChart', 400, 400);
+// 	drawPie(data2, '#area-1', 100, 100);
+// 	drawPie(data3, '#area-2', 100, 100);
+}
+
+function convertToD3Data(data)
+{
+	// console.log(data);
+	var d3Data = [];
+	for (var i = 0; i < data.length; i++)
+	{
+		if (data[i].value != 0)
+			d3Data.push(data[i]);
+	}
+	d3Data = d3Data.sort(function(a, b){return b.value-a.value}).slice(0, 10);
+	return d3Data;
 }
 
 function changeChart(chart, height, width)
@@ -76,7 +91,7 @@ function drawPodium(data, area, height, width)
 	svg.selectAll('text').data(podiumData)
 		.enter()
 		.append('text')
-		.text(function(d){ return d.data; })
+		.text(function(d){ console.log(d); return d.data; })
 		.attr({'fill':'#000'
 				,'x':function(d, i){ return i * height / podiumData.length + 20; }
 				,'y':function(d){ return 200 - d.value; } })
@@ -158,7 +173,6 @@ function drawPie(data, area, height, width)
 		.append("div")
 		.attr("class","tooltip")
 		.style("opacity",0.0);
-
 	var legendData = [];
 	// 設定半徑為寬度一半
 	var radius = width / 2;
@@ -170,8 +184,8 @@ function drawPie(data, area, height, width)
 
 	// pie 裡面文字的位置
 	var labelArc = d3.svg.arc()
-	    .outerRadius(radius / 2)
-	    .innerRadius(radius / 2);
+	    .outerRadius(radius-30)
+	    .innerRadius(radius-30);
 
 	// 生成 pie 的函式
 	var pie = d3.layout.pie()
@@ -206,8 +220,9 @@ function drawPie(data, area, height, width)
 	    .transition()
 	    .duration(1000)
 	    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+	    .attr("dx", "-.85em")
 	    .attr("dy", ".35em")
-	    .text(function(d) { return d.data.value; });
+	    .text(function(d) {  return d.endAngle - d.startAngle > 0.3 ? d.data.value : ''; });
 
 	// 滑鼠移入
 	g.on("mouseover",function(){

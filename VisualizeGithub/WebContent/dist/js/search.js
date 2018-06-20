@@ -30,6 +30,7 @@ $(document).ready(function(){
 	language="";
 	pushed="";
 	doingSearch();	
+
 	//append select的option
 	//搜尋按鈕
 
@@ -272,17 +273,21 @@ var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
 var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
 
+var searchResultArray = [];
+var eachLangArray = new Map();
+
 //輸出"repository"搜尋結果
 function printRepositoryResult(response,length){
 	var name,login;
 	console.log(response);
-	
+	var promises = [];
+
 	//總共有幾個page
 	for(var i = 0;i < length;i++){
 		name = response.data.search.edges[i].node.name;
 		login = response.data.search.edges[i].node.owner.login;
 		//拿該專案有用到的所有language
-		$.ajax({
+		var langPromise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -310,7 +315,10 @@ function printRepositoryResult(response,length){
 			}),
 			cache:false,
 			success:function(resp){
-				// console.log(resp.data.repository.languages.edges)
+				console.log(resp);
+				console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
+
+				// console.log()
 				languageArray = [];
 				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
 					languageObject = {"repository":resp.data.repository.name
@@ -318,6 +326,7 @@ function printRepositoryResult(response,length){
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(languageObject);
 				}
+				eachLangArray.set(languageArray[0].repository, languageArray);
 				//將各個小圖片的結果合併成大圖
 				languageArray.forEach(function(item){
 				    var data = item.data,value = item.value ;
@@ -337,7 +346,7 @@ function printRepositoryResult(response,length){
 			}
 		});
 		//拿所有搜尋結果的不同資料的數量
-		$.ajax({
+		var resultPromise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -380,8 +389,27 @@ function printRepositoryResult(response,length){
 				error:function(e){
 					console.log("get watch error");
 				}
-		});
-	}
+		})
+		promises.push(langPromise);
+		promises.push(resultPromise);
+		searchResultArray.push({title: login + '/' + name, description: response.data.search.edges[i].node.description, url: response.data.search.edges[i].node.url, topic: response.data.search.edges[i].node.repositoryTopics.edges});
+	};
+	Promise.all(promises).then(function(){
+		console.log(searchResultArray);
+		console.log(eachLangArray);
+
+		console.log(searchResultArray);
+
+		drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400);
+		for (var i = 0; i < searchResultArray.length; i++)
+		{
+			searchResultArray[i].language = eachLangArray.get(searchResultArray[i].title.split('/')[1]);
+		}
+		for (var i = 0; i < 10; i++)
+		{
+		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 150, 150);
+		}
+	})
 }
 //輸出"user"搜尋結果
 function printUserResult(response,length){
@@ -475,3 +503,22 @@ function printIssueResult(response,Length){
 		allIssueCommentArray.push(object);
 	}
 }
+
+function changeToLanguage(){
+	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400)
+};
+function changeToFork(){
+	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400)
+};
+function changeToStar(){
+	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400)
+};
+function changeToWatch(){
+	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400)
+};
+function changeToPullRequest(){
+	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
+};
+// function changeToIssue(){
+// 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
+// };

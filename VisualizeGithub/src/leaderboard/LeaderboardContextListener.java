@@ -1,3 +1,4 @@
+
 package leaderboard;
 
 import java.io.IOException;
@@ -87,9 +88,6 @@ public class LeaderboardContextListener implements ServletContextListener{
 		timer = new Timer();
 		//24小時跑一次
 		timer.schedule(task,0, 24*60*60*1000);
-		
-		
-//		cl.CalStar("2018-01-01");
 	}
 	public String checkDate(int year,int month,int date)
 	{
