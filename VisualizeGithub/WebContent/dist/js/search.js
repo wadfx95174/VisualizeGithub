@@ -106,7 +106,9 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
+
 		        	Authorization: token
+
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -165,7 +167,9 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
+
 		        	Authorization: token
+
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -213,7 +217,9 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
+
 		        	Authorization: token
+
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -301,7 +307,9 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
+
 	        	Authorization: token
+
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -360,7 +368,9 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
+
 	        	Authorization: token
+
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -444,7 +454,9 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
+
 	        	Authorization: token
+
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -536,7 +548,7 @@ function printIssueResult(response,Length){
 	var title;
 	console.log(response);
 	//總共有幾個page
-	for(var i = 0;i < length;i++){
+	for(var i = 0;i < response.data.search.edges.length;i++){
 		title = response.data.search.edges[i].node.title;
 
 		//participant
@@ -549,6 +561,7 @@ function printIssueResult(response,Length){
 		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
 		allIssueCommentArray.push(object);
 	}
+	console.log(allIssueParticipantArray);
 }
 
 function changeToLanguage(){
