@@ -228,9 +228,9 @@ function doingSearch(){
 						            +'}'
 						            +'name'
 						          +'}'
-						          +'title'
-						          +'updatedAt'
-						          +'body'
+						          +'title '
+						          +'updatedAt '
+						          +'body '
 								  +'participants{'
 						            +'totalCount'
 						          +'}'
@@ -251,6 +251,7 @@ function doingSearch(){
 						+'}'
 				}),
 				success:function(response){
+					console.log(response);
 					// console.log(response.data.search.edges.length)
 					// console.log(response.data.search.pageInfo.hasNextPage)
 					check = response.data.search.pageInfo.hasNextPage;
