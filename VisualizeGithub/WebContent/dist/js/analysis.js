@@ -80,6 +80,8 @@ $(document).ready(function(){
 				check = response.data.repository.releases.pageInfo.hasNextPage;
 				cursor = ',after:"'+response.data.repository.releases.pageInfo.endCursor+'"';
 
+				
+
 			},
 			error:function(e){
 				console.log("release error");
