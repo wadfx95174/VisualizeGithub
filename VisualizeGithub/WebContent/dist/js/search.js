@@ -193,7 +193,7 @@ function doingSearch(){
 		}
 	}
 	//issue
-	else {
+	else if (pType == "ISSUE") {
 		while(check){
 			$.ajax({
 		    	method: "POST",
@@ -208,7 +208,7 @@ function doingSearch(){
 		      	data: JSON.stringify({
 		      		query:
 		      			'{'
-						  +'search(query: "'+pText+' '+language+' '+created+'", type: USER, first: 100'+cursor+') {'
+						  +'search(query: "'+pText+' '+language+' '+created+'", type: ISSUE, first: 100'+cursor+') {'
 						    +'edges {'
 						      +'node {'
 						        +'... on Issue {'
@@ -271,6 +271,7 @@ var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
 
 var searchResultArray = [];
+var eachLangArray = new Map();
 
 //輸出"repository"搜尋結果
 function printRepositoryResult(response,length){
@@ -283,7 +284,7 @@ function printRepositoryResult(response,length){
 		name = response.data.search.edges[i].node.name;
 		login = response.data.search.edges[i].node.owner.login;
 		//拿該專案有用到的所有language
-		$.ajax({
+		var langPromise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -308,7 +309,10 @@ function printRepositoryResult(response,length){
 			}),
 			cache:false,
 			success:function(resp){
-				// console.log(resp.data.repository.languages.edges)
+				console.log(resp);
+				console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
+
+				// console.log()
 				languageArray = [];
 				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
 					languageObject = {"repository":resp.data.repository.name
@@ -316,6 +320,7 @@ function printRepositoryResult(response,length){
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(languageObject);
 				}
+				eachLangArray.set(languageArray[0].repository, languageArray);
 				//將各個小圖片的結果合併成大圖
 				languageArray.forEach(function(item){
 				    var data = item.data,value = item.value ;
@@ -335,7 +340,7 @@ function printRepositoryResult(response,length){
 			}
 		});
 		//拿所有搜尋結果的不同資料的數量
-		var promise = $.ajax({
+		var resultPromise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -379,11 +384,25 @@ function printRepositoryResult(response,length){
 					console.log("get watch error");
 				}
 		})
-		promises[i] = promise;
+		promises.push(langPromise);
+		promises.push(resultPromise);
 		searchResultArray.push({title: login + '/' + name, description: response.data.search.edges[i].node.description, url: response.data.search.edges[i].node.url, topic: response.data.search.edges[i].node.repositoryTopics.edges});
 	};
 	Promise.all(promises).then(function(){
+		console.log(searchResultArray);
+		console.log(eachLangArray);
+
+		console.log(searchResultArray);
+
 		drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400);
+		for (var i = 0; i < searchResultArray.length; i++)
+		{
+			searchResultArray[i].language = eachLangArray.get(searchResultArray[i].title.split('/')[1]);
+		}
+		for (var i = 0; i < 10; i++)
+		{
+		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 150, 150);
+		}
 	})
 }
 //輸出"user"搜尋結果
