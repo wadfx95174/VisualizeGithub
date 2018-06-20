@@ -6,7 +6,7 @@ var state = 0;	// 按鈕畫圖方式  0:長條  1:圓餅  2:甜甜圈
 var data1 = [{data:'英國',value:90},{data:'美國',value:70},{data:'法國',value:90},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62},{data:'我是零',value:0}]; //測資1
 var data2 = [{data:'英國',value:90},{data:'美國',value:70},{data:'法國',value:40},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62},{data:'美國',value:70},{data:'法國',value:40},{data:'德國',value:100},{data:'中國',value:140},{data:'俄國',value:110},{data:'韓國',value:10},{data:'泰國',value:62}]; //測資2
 var data3 = [{data:'英國',value:140},{data:'美國',value:180},{data:'法國',value:100}]; //測資3
-var data4 = [{data: "freeCodeCamp", value: 292255},{data: "vega", value: 6043},{data: "spritejs", value: 289},{data: "iClient-JavaScript", value: 173},{data: "D3", value: 0},{data: "Stadium1", value: 0},{data: "D3_study", value: 0},{data: "D3HW", value: 0},{data: "d3_DataJournalism", value: 0},{data: "hw-16-D3", value: 0},{data: "D3HW", value: 0},{data: "D3-Practice", value: 0},{data: "cs-alumni-statistics", value: 0},{data: "D3HW", value: 0},{data: "D3.js-Homework", value: 0},{data: "interactiveBarGraph", value: 0}];
+var data4 = [{data: "freeCodeCamp", value: 292255},{data: "vega", value: 26043},{data: "spritejs", value: 289},{data: "iClient-JavaScript", value: 173},{data: "D3", value: 0},{data: "Stadium1", value: 0},{data: "D3_study", value: 0},{data: "D3HW", value: 0},{data: "d3_DataJournalism", value: 0},{data: "hw-16-D3", value: 0},{data: "D3HW", value: 0},{data: "D3-Practice", value: 0},{data: "cs-alumni-statistics", value: 0},{data: "D3HW", value: 0},{data: "D3.js-Homework", value: 0},{data: "interactiveBarGraph", value: 0}];
 var podiumData = [{data:'',value:140},{data:'',value:180},{data:'',value:100}]; //獎台資料
 
 var currentData = data1;
@@ -167,7 +167,108 @@ function drawBar(data, area, height, width)
 	}
 }
 
-function drawPie(data, area, height, width)
+function drawSmallPie(data, area, height, width)
+{
+	var tooltip = d3.select("body")
+		.append("div")
+		.attr("class","tooltip")
+		.style("opacity",0.0);
+	var legendData = [];
+	// 設定半徑為寬度一半
+	var radius = width / 2;
+
+	// 設定 pie 要用的 arc
+	var arc = d3.svg.arc()
+	    .outerRadius(radius - width / 10)
+	    .innerRadius(0);
+
+	// pie 裡面文字的位置
+	var labelArc = d3.svg.arc()
+	    .outerRadius(radius)
+	    .innerRadius(radius-10);
+
+	// 生成 pie 的函式
+	var pie = d3.layout.pie()
+	    .sort(null)
+	    .value(function(d) { return d.value; });
+
+	// 定義 pie
+	var svg = d3.select(area).html('').append('svg')
+		.attr({'width':width, 'height':height})
+	    .append("g")
+	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+	// SVG 裡面相同的元素 g
+	var g = svg.selectAll(".arc")
+	    .data(pie(data))
+	    .enter().append("g")
+	    .attr("class", "arc");
+
+	// append path 
+	g.append("path")
+	    .attr("d", arc)
+	    .style("fill", function(d, i) { 
+	    		var newObject = {'color': color(d.data.value + i), 'data': d.data.data};
+	    		legendData.push(newObject); 
+	    		return color(d.data.value + i); })
+	    .transition()
+	    .duration(1000)
+	    .attrTween("d", tweenPie);
+	        
+	// append text 
+	g.append("text")
+	    .transition()
+	    .duration(1000)
+	    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+	    .attr("dx", "-.85em")
+	    .attr("dy", ".35em")
+	    .text(function(d) {  return d.endAngle - d.startAngle > 0.3 ? d.data.value : ''; });
+
+	// 滑鼠移入
+	g.on("mouseover",function(){
+	    var target = d3.select(this);
+	    var d = target.datum();
+	    var dgre = (d.endAngle-d.startAngle) / 2 + d.startAngle;
+	    var dis = width / ((width + 40) / 15); //distance
+	     
+	    var x = d3.round(Math.sin(dgre), 15) * dis;
+	    var y = -d3.round(Math.cos(dgre), 15) * dis;
+	        target
+	        .transition()
+	        .duration(700)
+	        .attr("transform", "translate("+ x +", "+ y +")")
+	        .ease("bounce") ;
+	      // console.log("x:"+x+" y:"+y);
+
+	    tooltip.html(d.data.data + "" + "<br />" + d.data.value)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 20) + "px")
+            .style("opacity",1.0);
+	});
+
+	g.on("mousemove", function(){
+	    tooltip.style("left", (d3.event.pageX) + "px")
+	        .style("top", (d3.event.pageY + 20) + "px");
+	})
+
+	// 滑鼠移開
+	g.on("mouseout",function(){
+	    d3.select(this)
+	        .transition()
+	        .duration(400)
+	        .attr("transform", "translate("+ 0 +", "+ 0 +")") ;
+	    tooltip.style("opacity",0.0);
+ 	});
+
+	// pie 動畫
+	function tweenPie(b) {
+	    b.innerRadius = 0;
+	    var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+	    return function(t) { return arc(i(t)); };
+	}
+}
+
+function drawPie(data, area, height, width, colorArea)
 {
 	var tooltip = d3.select("body")
 		.append("div")
@@ -267,11 +368,14 @@ function drawPie(data, area, height, width)
 	    return function(t) { return arc(i(t)); };
 	}
 
-	legendArea = document.getElementById('color-legend-area');
-	legendArea.innerHTML = '';
-	for (var i = 0; i < legendData.length; i++)
+	if (colorArea != null)
 	{
-		legendArea.innerHTML += '<div class="color-legend" style="background:' + legendData[i].color + '"></div><span class="color-description">' + legendData[i].data + '</span>';
+		legendArea = $(colorArea);
+		legendArea.html('');
+		for (var i = 0; i < legendData.length; i++)
+		{
+			legendArea.append('<div class="color-legend" style="background:' + legendData[i].color + '"></div><span class="color-description">' + legendData[i].data + '</span>');
+		}
 	}
 }
 

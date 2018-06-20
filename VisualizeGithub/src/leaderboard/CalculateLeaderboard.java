@@ -1,4 +1,3 @@
-
 package leaderboard;
 
 import java.io.BufferedReader;
@@ -42,7 +41,7 @@ public class CalculateLeaderboard {
 		ArrayList<String> fullName = new ArrayList<String>();
 		ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 		
-		//Create HttpURLConnection
+		//Create HttpURLConnection 
 		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=stars&order=desc&per_page=100&"+accessToken).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
@@ -198,6 +197,5 @@ public class CalculateLeaderboard {
 		}
 		return leaderboards;
 	}
-	
 }
 
