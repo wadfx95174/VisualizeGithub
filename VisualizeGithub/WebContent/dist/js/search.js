@@ -323,7 +323,7 @@ function printRepositoryResult(response,length){
 			cache:false,
 			success:function(resp){
 				// console.log(resp);
-				console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
+				// console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
 
 				languageArray = [];
 				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
@@ -536,6 +536,7 @@ function printUserResult(response,length){
 //輸出"issue"搜尋結果
 function printIssueResult(response,Length){
 	var title;
+	console.log(response);
 	//總共有幾個page
 	for(var i = 0;i < length;i++){
 		title = response.data.search.edges[i].node.title;
@@ -567,9 +568,9 @@ function changeToWatch(){
 function changeToPullRequest(){
 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
-// function changeToIssue(){
-// 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
-// };
+function changeToIssue(){
+	drawPie(convertToD3Data(allRepositoryIssueArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
 
 
 function changeType(input)
@@ -669,4 +670,3 @@ layui.use(['laypage', 'layer'], function(){
 		}
 	});
 });
-
