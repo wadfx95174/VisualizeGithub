@@ -1,43 +1,86 @@
+
 package leaderboard;
 
 public class Leaderboard {
-	private int total_count;
-	private String full_name;
-	private int stargazers_count;
-	private int forks_count;
+	private int totalCount;
+	private String fullName;
+	private int stargazersCount;
+	private int forksCount;
+	private int watchCount;
+	private int followCount;
+	private String login;
 
-	public int getTotal_count() {
-		return total_count;
+	
+	public String getLogin() {
+		return login;
 	}
 
-	public void setTotal_count(int total_count) {
-		this.total_count = total_count;
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getFull_name() {
-		return full_name;
+
+	public int getFollowCount() {
+		return followCount;
 	}
 
-	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+
+	public void setFollowCount(int followCount) {
+		this.followCount = followCount;
 	}
 
-	public int getStargazers_count() {
-		return stargazers_count;
-	}
-
-	public void setStargazers_count(int stargazers_count) {
-		this.stargazers_count = stargazers_count;
-	}
-
-	public int getForks_count() {
-		return forks_count;
-	}
-
-	public void setForks_count(int forks_count) {
-		this.forks_count = forks_count;
-	}
 
 	public Leaderboard() {}
+
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+	public int getStargazersCount() {
+		return stargazersCount;
+	}
+
+
+	public void setStargazersCount(int stargazersCount) {
+		this.stargazersCount = stargazersCount;
+	}
+
+
+	public int getForksCount() {
+		return forksCount;
+	}
+
+
+	public void setForksCount(int forksCount) {
+		this.forksCount = forksCount;
+	}
+
+
+	public int getWatchCount() {
+		return watchCount;
+	}
+
+
+	public void setWatchCount(int watchCount) {
+		this.watchCount = watchCount;
+	}
 
 }

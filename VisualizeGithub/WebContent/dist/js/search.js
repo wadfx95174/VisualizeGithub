@@ -87,6 +87,9 @@ function doingSearch(){
 	if(pType == "REPOSITORY"){
 		//跑搜尋結果。一個query只能抓100個edge，所以要用迴圈，然後每次都抓該組的pageInfo中的hasNextPage，去判斷
 		//如果hasNextPage是true，就要把endCursor放在after中
+		console.log(pText)
+		console.log(language)
+		console.log(pushed)
 		while(check){
 			$.ajax({
 		    	method: "POST",
@@ -131,7 +134,7 @@ function doingSearch(){
 						+'}'
 				}),
 				success:function(response){
-					// console.log(response)
+					console.log(response)
 					// console.log(response.data.search.pageInfo.hasNextPage)
 					check = response.data.search.pageInfo.hasNextPage;
 					cursor = ',after:"'+response.data.search.pageInfo.endCursor+'"';
@@ -193,7 +196,7 @@ function doingSearch(){
 		}
 	}
 	//issue
-	else if (pType == "ISSUE") {
+	else if(pType == "ISSUE"){
 		while(check){
 			$.ajax({
 		    	method: "POST",
@@ -261,7 +264,7 @@ function doingSearch(){
 var languageArray=[];
 //大圖要的資料，repository
 var allRepositoryLanguageArray=[],allRepositoryForkArray=[],allRepositoryStarArray=[];
-var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[];
+var allRepositoryWatchArray=[],allRepositoryPullRequestArray=[],allRepositoryIssueArray=[];
 //大圖要的資料，user
 var allUserIssueArray=[],allUserFollowersArray=[],allUserFollowingArray=[],allUserRepositoriesArray=[];
 var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
@@ -366,6 +369,9 @@ function printRepositoryResult(response,length){
 					    +'pullRequests{'
 					      +'totalCount'
 					    +'}'
+					    +'issues{'
+					      +'totalCount'
+					    +'}'
 					  +'}'
 					+'}'
 				}),
@@ -383,6 +389,10 @@ function printRepositoryResult(response,length){
 					//pullrequest
 					object = {"data":resp.data.repository.name,"value":resp.data.repository.pullRequests.totalCount};
 					allRepositoryPullRequestArray.push(object);
+					//issue
+					object = {"data":resp.data.repository.name,"value":resp.data.repository.issues.totalCount};
+					allRepositoryIssueArray.push(object);
+					
 				},
 				error:function(e){
 					console.log("get watch error");
@@ -459,6 +469,7 @@ function printUserResult(response,length){
 				}),
 				cache:false,
 				success:function(resp){
+					console.log(resp);
 					//pullrequest
 					object = {"data":resp.data.user.name,"value":resp.data.user.pullRequests.totalCount};
 					allUserPullRequestArray.push(object);
