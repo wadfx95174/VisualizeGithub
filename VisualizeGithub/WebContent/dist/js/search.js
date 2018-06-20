@@ -555,7 +555,7 @@ layui.use(['laypage', 'layer'], function(){
 	data = searchResultArray;
 	// switch(pType)
 	// {
-	// 	case 'REPOSITORY': data = searchResultArray; break;
+	// 	case 'REPOSITORY': ; break;
 	// 	case 'USER': data = ;
 	// 	case 'ISSUE': data = ;
 	// }
