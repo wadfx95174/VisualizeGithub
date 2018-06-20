@@ -23,24 +23,17 @@
 <script src="plugins/layui.js" charset="utf-8"></script>
 <!-- searchResult.css -->
 <link href="dist/css/searchResult.css" rel="stylesheet">
-
+<!-- d3 -->
+<link href="dist/css/d3.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="dist/js/d3.js" type="text/javascript"></script>
+<!-- Timeline -->
+<link href="plugins/vis/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+<link href="dist/css/timeline.css" rel="stylesheet" type="text/css" />
+<script src="plugins/vis/vis.js"></script>
+<script src="dist/js/timeline.js"></script>
+<!-- <script src="dist/js/search.js" charset="utf-8"></script> -->
 </head>
-
-
-<script>
-function changeImg(x)
-{	if(x=="bar_chart")
-	{
-		var img = document.getElementById("123");
-		img.setAttribute("src","長條圖.png")
-	}
-	else
-	{
-		var img = document.getElementById("123");
-		img.setAttribute("src","圓餅圖.png")
-	}
-}
-</script>
 
 <body>
 
@@ -69,7 +62,7 @@ function changeImg(x)
 		<div class="w3-row" style="height:0px;">
 			<table align="center" border=1 width="85%" height=200px>
 				<caption><div align="left"><h1>Commit</h1></div></caption>
-　				<tr><td align="center"><img src= "折線圖.jpg" style="height:300px;width:100%;"></td></tr>
+　				<tr><td align="center"><!-- <img src= "折線圖.jpg" style="height:300px;width:100%;"> --></td></tr>
 			</table>			
 		</div>
 	</div>
@@ -77,18 +70,22 @@ function changeImg(x)
 	<div id="analysis" class=" tab-pane fade  ">
 		<div class="w3-col" style="width:70%;padding:25px;">
 			<div>
-				<img src= "圓餅圖.png" style="height:410px;width:100%" id="123">
-						<form action="" align="center">
-							<input type="radio" name="type" value="pie_chart" onchange="changeImg(this.value)">圓餅圖
-							<input type="radio" name="type" value="bar_chart" onchange="changeImg(this.value)">長條圖
-						</form>
+				<!-- <img src= "圓餅圖.png" style="height:410px;width:100%" id="123"> -->
+				<div id="img-area">
+					<div id="chart"></div>
+					<div id="color-legend-area"></div>
+				</div>
+				<form action="" align="center">
+					<input type="radio" name="type" value="pie_chart" onchange="changeToPieChart()">圓餅圖
+					<input type="radio" name="type" value="bar_chart" onchange="changeToBarChart()">長條圖
+				</form>
 			</div>
 		</div>
 	<div class="w3-col" style="width:20%;padding:25px;">
 	
 		<div class="btn-group">
-			<button class="btn btn-primary">language</button>
-			<button class="btn btn-success">release</button>
+			<button class="btn btn-primary" onclick="changeToLanguage()">language</button>
+			<button class="btn btn-success" onclick="changeToRelease()">release</button>
 		</div>
 		
 		

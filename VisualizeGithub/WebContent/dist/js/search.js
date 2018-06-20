@@ -105,7 +105,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -164,7 +164,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -212,7 +212,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -300,7 +300,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -359,7 +359,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -443,7 +443,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 	      	},
 	      	data: JSON.stringify({
 	      		query:

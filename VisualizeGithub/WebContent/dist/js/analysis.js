@@ -1,20 +1,31 @@
 
+var container ;
+
+var source ;
+
+var array;
 
 function get(name)
 {
    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
       return decodeURIComponent(name[1]);
 }
+//存放該repository的commit資料
+var commitArray=[];
+// 放圖資料
+var commitChartArray=[];
+var timelineDataArray=[];
+
+var languageArray=[];
+var commitMap = new Map();
 $(document).ready(function(){
 	var fullName = get('name');
-	//存放該repository的commit資料
-	var commitArray=[];
 	var object;
-
+	var promises = [];
 	//抓commit資料
 	//因為不知道有幾頁，就全部跑，用length來判斷該頁面有沒有東西，如果沒有就不做事
 	for(var i = 1 ;i <= 10; i++){
-		$.ajax({
+		var promise = $.ajax({
 			url:"https://api.github.com/repos/"+fullName+"/commits?page="+i+"&per_page=100&access_token=727d34d1872545e5859ec1c969dea1f93a20d253",
 			cache:false,
 			success:function(response){
@@ -22,7 +33,7 @@ $(document).ready(function(){
 					// console.log(response);
 					for(var j = 0;j < response.length;j++){
 						// console.log(response[j].committer.login);
-						object={"committer":response[j].committer.login,"message":response[j].commit.message,
+						object={"committer": (response[j].committer != null ? response[j].committer.login : ''),"message":response[j].commit.message,
 							"date":response[j].commit.committer.date};
 						commitArray.push(object);
 					}
@@ -33,7 +44,25 @@ $(document).ready(function(){
 				console.log("analysis error");
 			}
 		});
+		promises.push(promise);
 	}
+	Promise.all(promises).then(function(){
+		commitArray = commitArray.sort(function (a, b) {
+		tA = a;
+		tB = b;
+    	return timeCompare(a.date, b.date) ? 1 : -1;
+ 	   });
+		
+		for (var i = 0; i < commitArray.length; i++)
+		{
+			// console.log(getTimeFormat(commitArray[i].date));
+			// if (!commitMap.has(getTimeFormat(commitArray[i].date)))
+			// 	commitMap.set(getTimeFormat(commitArray[i].date), 1);
+			// else
+			// 	commitMap[getTimeFormat(commitArray[i].date)] = parseInt(commitMap[getTimeFormat(commitArray[i].date)]) + 1;	//-------- test----------
+		}
+		commitChartArray = Object.values(commitMap);
+	})
 
 	
 	var check=true,cursor="";
@@ -88,9 +117,22 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
 
-	var languageArray=[];
+	
+	
+	releaseArray = releaseArray.sort(function (a, b) {
+		tA = a;
+		tB = b;
+		return timeCompare(a.updatedAt, b.updatedAt) ? 1 : -1;
+    });
+    // 設置 timeline array data
+    for (var i = 0; i < releaseArray.length; i++)
+    {
+    	var arr = [];
+    	arr.push(releaseArray[i].description);
+    	timelineDataArray.push({'data':releaseArray[i].releaseName, 'time':releaseArray[i].updatedAt, 'note':arr})
+    }
+
 	//language
 	$.ajax({
 			method: "POST",
@@ -123,8 +165,10 @@ $(document).ready(function(){
 					object = {"data":resp.data.repository.languages.edges[j].node.name
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(object);
+					drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
 				}
 				// console.log(languageArray);
+
 			},
 			error:function(e){
 				console.log("get language error");
@@ -132,7 +176,20 @@ $(document).ready(function(){
 		});
 
 
+
+     // source = [{data: 'v5.0.1', time: '2013-04-16', note: ['add index.html', 'add search', ]}, {data: 'v5.0.2', time:'2013-04-22', note: ['add calendar', 'add keylabel']}, {data: 'v5.0.3', time:'2013-04-30', note: ['add note']}, {data: 'v5.0.4', time:'2013-05-04', note: ['update search', 'update calendar']}];
+
+     // array = convertToTimelineData(source);
+    // draw(container, array);
+    // var versionIdArray = getVersionIdArray(array)
+    // console.log(versionIdArray);
+    // var btnArea = document.getElementById('btn-area');
+    // for (var i = 0; i < versionIdArray.length; i++)
+    // {
+    //     btnArea.innerHTML += '<button onClick="moveToVersion(\'' + versionIdArray[i].start + '\',\'' + versionIdArray[i].end + '\')">' + versionIdArray[i].version + '</button>'
+    // }
 });
+
 //這個陣列要"顛倒"讀值，因為越舊的版本在越前面
 var releaseArray=[];
 function printRelease(response,length){
@@ -145,4 +202,51 @@ function printRelease(response,length){
 		releaseArray.push(object);
 	}
 	console.log(releaseArray);
+}
+
+function getTimeFormat(time)
+{
+	var format = time.split(/-|:|T|Z| |\./);
+	return format.join('');
+}
+
+// 輸入兩個 time, 若 timeA 較大則回傳 true，否則回傳 false
+function timeCompare(timeA, timeB)
+{
+	var arrayA = typeof(timeA) == 'string' ? timeA.split(/-|:|T|Z| |\./) : timeA;
+	var arrayB = typeof(timeB) == 'string' ? timeB.split(/-|:|T|Z| |\./) : timeB;
+	for (var i = 0; i < 6; i++)
+	{
+		a = parseInt(arrayA[i] != undefined ? arrayA[i] : 0);
+		b = parseInt(arrayB[i] != undefined ? arrayB[i] : 0);
+		// console.log(a > b);
+		if (a > b)
+			return true;
+		else if (a < b)
+			return false;
+	}
+	return true;
+}
+
+function changeToPieChart()
+{
+	drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
+}
+
+function changeToBarChart()
+{
+	drawBar(convertToD3Data(languageArray), '#chart', 400, 400);
+}
+
+function changeToRelease()
+{
+	$('#img-area').html('<div id="mytimeline" class="timeline-area"></div>');
+	container = document.getElementById('mytimeline');
+    draw(container, convertToTimelineData(timelineDataArray) );
+}
+
+function changeToLanguage()
+{
+	$('#img-area').html('<div id="chart"></div><div id="color-legend-area"></div>');
+	drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
 }
