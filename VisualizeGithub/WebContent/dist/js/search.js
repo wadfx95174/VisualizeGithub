@@ -105,7 +105,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -164,7 +164,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -212,7 +212,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -300,7 +300,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -359,7 +359,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -443,7 +443,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -535,7 +535,7 @@ function printIssueResult(response,Length){
 	var title;
 	console.log(response);
 	//總共有幾個page
-	for(var i = 0;i < length;i++){
+	for(var i = 0;i < response.data.search.edges.length;i++){
 		title = response.data.search.edges[i].node.title;
 
 		//participant
