@@ -105,7 +105,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -164,7 +164,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -212,7 +212,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+		        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -299,7 +299,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -358,7 +358,9 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+
+	        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
+
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -424,7 +426,7 @@ function printRepositoryResult(response,length){
 		// 畫前十筆結果圓餅圖
 		for (var i = 0; i < 10; i++)
 		{
-		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 150, 150, null);
+		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 175, 175, null);
 		}
 	})
 }
@@ -442,7 +444,9 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+
+	        	Authorization: "token 5fef063dcf53af6e1f784d8dfca75ec2d646f79c"
+
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -628,47 +632,37 @@ layui.use(['laypage', 'layer'], function(){
 								pushObj += item.topic[i].node.topic.name + ' ';
 							}
 
-							pushObj += '</div>'
-										+'<div class="w3-col" style="width:5%;height:150px"></div>'
-										+'<div class="w3-col" style="width:30%;height:150px">'
-											+'<a href="analysis.html?name=' + item.title + '">'
-											+'<div id="smallChart-' + index + '"></div>'
-											+'</a>'					
-										+'</div>'	
-									+'</div>';
-				            arr.push(pushObj);
-			        	});
-						break;
-					case 'USER':
-				        layui.each(thisData, function(index, item){
-				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
-											+'<div class="w3-col" style="width:60%;height:150px">'
-												+'<a href="' + item.url + '">'
-												+'<h2>'+item.name+'</h2><br>'
-												+'<p>'+ (item.bio != null ? item.bio : '') +'</p><br>'
-												+'<p>' + item.location + '</p>'
-												+'</a>'
-											+ '</div>'
-											+'<div class="w3-col" style="width:5%;height:150px"></div>'
-											+'<div class="w3-col" style="width:30%;height:150px">'
-												+'<a href="analysis.html?name=' + item.title + '">'
-												+'<div id="smallChart-' + index + '"></div>'
-												+'</a>'					
-											+'</div>'	
-										+'</div>';
-				            arr.push(pushObj);
-			        	});
-						break;
-					case 'ISSUE':
+		        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+									+'<div class="w3-col" style="width:60%;height:175px">'
+										+'<a href="' + item.url + '">'
+										+'<h2 id="title_'+ index +'" class="ellipsis projectName">'+item.title+'</h2><br>'
+										+'<p class="ellipsis2">'+ (item.description != null ? item.description : '') +'</p><br>'
+										+'</a>';
+										
+					for (var i = 0; i < item.topic.length; i++)
+					{
+						pushObj += '<span class="topicCss">'+ item.topic[i].node.topic.name + '</span>' + ' ';
+					}
 
-						break;
-				}
+					pushObj += '</div>'
+								+'<div class="w3-col" style="width:5%;height:175px"></div>'
+								+'<div class="w3-col" style="width:30%;height:175px">'
+									+'<a href="analysis.html?name=' + item.title + '">'
+									+'<div id="smallChart-' + index + '"></div>'
+									+'</a>'					
+								+'</div>'	
+							+'</div>';
+		            arr.push(pushObj);
+	        	});
+
+
        			return arr.join('');
 	    	}();
 
 		    layui.each(thisData, function(index, item){
+				$('#title_'+index).tooltip({title:item.title ,  placement:"bottom", animation: true});
 		  		if (item.language != null)
-					drawSmallPie(item.language, '#smallChart-' + index, 150, 150);
+					drawSmallPie(item.language, '#smallChart-' + index, 175, 175);
 					// console.log('abc')
 				// console.log(index);
 		    });

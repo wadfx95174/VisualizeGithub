@@ -50,3 +50,34 @@ body{
 
 .hr2{ height:1px;border:none;border-top:1px solid #00B4CC;}
 
+.ellipsis{
+	white-space: nowrap; 
+    width: 100%;	
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.ellipsis2{
+	 
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.tooltip-inner {
+    max-width: 350px;
+    /* If max-width does not work, try using width instead */
+    width: 350px; 
+}
+
+.topicCss{
+	background-color:#09edf9;
+}
+
+.projectName{
+	color:blue;
+	font-weight:bold;	
+}
