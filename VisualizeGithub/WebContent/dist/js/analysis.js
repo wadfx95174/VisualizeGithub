@@ -21,7 +21,7 @@ $(document).ready(function(){
 				if(response.length!=0){
 					// console.log(response);
 					for(var j = 0;j < response.length;j++){
-						console.log(response[j].committer.login);
+						// console.log(response[j].committer.login);
 						object={"committer":response[j].committer.login,"message":response[j].commit.message,
 							"date":response[j].commit.committer.date};
 						commitArray.push(object);
@@ -76,7 +76,7 @@ $(document).ready(function(){
 					+'}'
 			}),
 			success:function(response){
-				console.log(response)
+				// console.log(response)
 				// console.log(response.data.search.pageInfo.hasNextPage)
 				check = response.data.repository.releases.pageInfo.hasNextPage;
 				cursor = ',after:"'+response.data.repository.releases.pageInfo.endCursor+'"';
@@ -89,12 +89,60 @@ $(document).ready(function(){
 		});
 	}
 	
-});
 
+	var languageArray=[];
+	//language
+	$.ajax({
+			method: "POST",
+	    	url: "https://api.github.com/graphql",
+	    	contentType: "application/json",
+	      	headers: {
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	      	},
+	      	data: JSON.stringify({
+	      		query:
+	      		'query{'
+				  +'repository(owner:"'+fullName.split("/")[0]+'",name:"'+fullName.split("/")[1]+'"){'
+				    +'languages(first:20){'
+				      +'edges{'
+				        +'node{'
+				          +'name'
+				        +'}'
+				        +'size'
+				      +'}'
+				    +'}'
+				  +'}'
+				+'}'
+			}),
+			cache:false,
+			success:function(resp){
+				// console.log(resp);
+				// console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
+
+				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
+					object = {"data":resp.data.repository.languages.edges[j].node.name
+					,"value":resp.data.repository.languages.edges[j].size};
+					languageArray.push(object);
+				}
+				// console.log(languageArray);
+			},
+			error:function(e){
+				console.log("get language error");
+			}
+		});
+
+
+});
+//這個陣列要"顛倒"讀值，因為越舊的版本在越前面
 var releaseArray=[];
 function printRelease(response,length){
 	for(var i = 0;i < length;i++){
-		object={"author":response.data.repository.releases.}
+		object={"author":response.data.repository.releases.edges[i].node.author.login,
+				"description":response.data.repository.releases.edges[i].node.description,
+				"url":response.data.repository.releases.edges[i].node.url,
+				"updatedAt":response.data.repository.releases.edges[i].node.updatedAt,
+				"releaseName":response.data.repository.releases.edges[i].node.tag.name};
 		releaseArray.push(object);
 	}
+	console.log(releaseArray);
 }
