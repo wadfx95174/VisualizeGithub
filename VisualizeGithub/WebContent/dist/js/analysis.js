@@ -35,6 +35,7 @@ $(document).ready(function(){
 		});
 	}
 
+	
 	var check=true,cursor="";
 	//release
 	while(check){
@@ -80,8 +81,7 @@ $(document).ready(function(){
 				check = response.data.repository.releases.pageInfo.hasNextPage;
 				cursor = ',after:"'+response.data.repository.releases.pageInfo.endCursor+'"';
 
-				
-
+				printRelease(response,response.data.repository.releases.edges.length);
 			},
 			error:function(e){
 				console.log("release error");
@@ -90,3 +90,11 @@ $(document).ready(function(){
 	}
 	
 });
+
+var releaseArray=[];
+function printRelease(response,length){
+	for(var i = 0;i < length;i++){
+		object={"author":response.data.repository.releases.}
+		releaseArray.push(object);
+	}
+}
