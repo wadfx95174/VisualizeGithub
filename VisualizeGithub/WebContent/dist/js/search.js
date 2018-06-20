@@ -270,13 +270,14 @@ var allUserPullRequestArray=[],allUserStarArray=[],allUserWatchingArray=[];
 var allIssueParticipantArray=[],allIssueLabelArray=[],allIssueCommentArray=[];
 var languageObject,object;
 
+// 搜尋結果陣列
 var searchResultArray = [];
+// 各搜尋結果語言 (未排序)
 var eachLangArray = new Map();
 
 //輸出"repository"搜尋結果
 function printRepositoryResult(response,length){
 	var name,login;
-	console.log(response);
 	var promises = [];
 
 	//總共有幾個page
@@ -295,6 +296,9 @@ function printRepositoryResult(response,length){
 	      		query:
 	      		'query{'
 				  +'repository(owner:"'+login+'",name:"'+name+'"){'
+				    +'owner {'
+				      +'login'
+				    +'}'
 				    +'name '
 				    +'languages(first:20){'
 				      +'edges{'
@@ -309,17 +313,17 @@ function printRepositoryResult(response,length){
 			}),
 			cache:false,
 			success:function(resp){
-				console.log(resp);
+				// console.log(resp);
 				console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
 
-				// console.log()
 				languageArray = [];
 				for(var j = 0;j < resp.data.repository.languages.edges.length;j++){
-					languageObject = {"repository":resp.data.repository.name
+					languageObject = {"repository":resp.data.repository.owner.login + '/' + resp.data.repository.name
 					,"data":resp.data.repository.languages.edges[j].node.name
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(languageObject);
 				}
+				// 設定 map
 				eachLangArray.set(languageArray[0].repository, languageArray);
 				//將各個小圖片的結果合併成大圖
 				languageArray.forEach(function(item){
@@ -345,7 +349,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253 "
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -384,32 +388,37 @@ function printRepositoryResult(response,length){
 					console.log("get watch error");
 				}
 		})
+		// 將 Promise 放入陣列
 		promises.push(langPromise);
 		promises.push(resultPromise);
+		// 放搜尋結果到陣列
 		searchResultArray.push({title: login + '/' + name, description: response.data.search.edges[i].node.description, url: response.data.search.edges[i].node.url, topic: response.data.search.edges[i].node.repositoryTopics.edges});
 	};
+	// 等待所有 Ajax 完成後
 	Promise.all(promises).then(function(){
-		console.log(searchResultArray);
-		console.log(eachLangArray);
-
-		console.log(searchResultArray);
-
-		drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400);
+		// 把 map 所有的 value 取出來回傳回陣列
+		allRepositoryLanguageArray = Object.values(allRepositoryLanguageArray);
+		// 畫大圖
+		drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400, '#color-legend-area');
+		// 設置搜尋結果的 language 
 		for (var i = 0; i < searchResultArray.length; i++)
 		{
-			searchResultArray[i].language = eachLangArray.get(searchResultArray[i].title.split('/')[1]);
+			searchResultArray[i].language = eachLangArray.get(searchResultArray[i].title);
 		}
+		// 畫前十筆結果圓餅圖
 		for (var i = 0; i < 10; i++)
 		{
-		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 150, 150);
+		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 150, 150, null);
 		}
 	})
 }
 //輸出"user"搜尋結果
 function printUserResult(response,length){
 	var login;
-	//總共有幾個page
-	for(var i = 0;i < length;i++){
+	// //總共有幾個page
+	// console.log(response);
+	// console.log(length);
+	for(var i = 0;i < 30;i++){
 		login = response.data.search.edges[i].node.login;
 		//拿所有搜尋結果的不同資料的數量，然後塞入陣列
 		$.ajax({
@@ -417,7 +426,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253 "
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -499,19 +508,19 @@ function printIssueResult(response,Length){
 }
 
 function changeToLanguage(){
-	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400)
+	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 function changeToFork(){
-	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400)
+	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 function changeToStar(){
-	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400)
+	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 function changeToWatch(){
-	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400)
+	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 function changeToPullRequest(){
-	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
+	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 // function changeToIssue(){
 // 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400)
