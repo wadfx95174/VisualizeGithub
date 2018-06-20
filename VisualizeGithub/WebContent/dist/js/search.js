@@ -1,6 +1,11 @@
 
 var language,pushed,created;
 
+// parameter
+var pType;
+var pL;
+var pDate;
+var pText;
 
 function get(name)
 {
@@ -29,6 +34,12 @@ $(document).ready(function(){
 }*/
 	language="";
 	pushed="";
+
+	pType = get('type');
+	pL = get('l');
+	pDate = get('date');
+	pText = get('text');
+
 	doingSearch();	
 
 	//append select的option
@@ -42,15 +53,6 @@ function doingSearch(){
 	var Year = date.getFullYear()
 	var Mon = date.getMonth() + 1
 	var Day = date.getDate();
-
-
-	var pType = get('type');
-	var pL = get('l');
-	var pDate = get('date');
-	var pText = get('text');
-	
-
-
 
 	if(Mon < 10)Mon = "0"+Mon;
 	//算時間，一年以上(包含)
@@ -538,19 +540,25 @@ function changeToPullRequest(){
 // };
 
 
-	function changeType(input)
-	{
-		if(input=="users")
-			$("#date").hide();
-		else
-			$("#date").show();
-	}
+function changeType(input)
+{
+	if(input=="users")
+		$("#date").hide();
+	else
+		$("#date").show();
+}
 
 layui.use(['laypage', 'layer'], function(){
-  var laypage = layui.laypage
-  ,layer = layui.layer;
-  
-  var data = searchResultArray;
+	var laypage = layui.laypage
+	,layer = layui.layer;
+	var data;
+	switch(pType)
+	{
+		case 'REPOSITORY': data = searchResultArray; break;
+		case 'USER': data = ;
+		case 'ISSUE': data = ;
+	}
+	 
   // var data = [
   //   {title:'1', description:'121'},
   //   {title:'2', description:'122'},
@@ -570,54 +578,51 @@ layui.use(['laypage', 'layer'], function(){
   //   {title:'16', description:'1216'},
   // ];  
 
-laypage.render({
-    elem: 'paging'
-    ,count: data.length
-    ,jump: function(obj){
+	laypage.render({
+	    elem: 'paging'
+	    ,count: data.length
+	    ,jump: function(obj){
     	// console.log(obj);
-      //模拟渲染
-      var thisData = [];
+    	//模拟渲染
+    		var thisData = [];
 	  
-	  document.getElementById('pageResult').innerHTML = function(){
-        var arr = [];
-        thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
-        layui.each(thisData, function(index, item){
+			document.getElementById('pageResult').innerHTML = function(){
+		        var arr = [];
+		        thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+		        layui.each(thisData, function(index, item){
 
-        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
-							+'<div class="w3-col" style="width:60%;height:150px">'
-								+'<a href="' + item.url + '">'
-								+'<h2>'+item.title+'</h2><br>'
-								+'<p>'+ (item.description != null ? item.description : '') +'</p><br>'
-								+'</a>';
-			for (var i = 0; i < item.topic.length; i++)
-			{
-				pushObj += item.topic[i].node.topic.name + ' ';
-			}
+		        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+									+'<div class="w3-col" style="width:60%;height:150px">'
+										+'<a href="' + item.url + '">'
+										+'<h2>'+item.title+'</h2><br>'
+										+'<p>'+ (item.description != null ? item.description : '') +'</p><br>'
+										+'</a>';
+					for (var i = 0; i < item.topic.length; i++)
+					{
+						pushObj += item.topic[i].node.topic.name + ' ';
+					}
 
-			pushObj += '</div>'
-						+'<div class="w3-col" style="width:5%;height:150px"></div>'
-						+'<div class="w3-col" style="width:30%;height:150px">'
-							+'<a href="analysis.html?name=' + item.title + '">'
-							+'<div id="smallChart-' + index + '"></div>'
-							+'</a>'					
-						+'</div>'	
-					+'</div>';
-            arr.push(pushObj);
-        });
-        return arr.join('');
-      }();
+					pushObj += '</div>'
+								+'<div class="w3-col" style="width:5%;height:150px"></div>'
+								+'<div class="w3-col" style="width:30%;height:150px">'
+									+'<a href="analysis.html?name=' + item.title + '">'
+									+'<div id="smallChart-' + index + '"></div>'
+									+'</a>'					
+								+'</div>'	
+							+'</div>';
+		            arr.push(pushObj);
+	        	});
+       			return arr.join('');
+	    	}();
 
-      layui.each(thisData, function(index, item){
-      		if (item.language != null)
-				  drawSmallPie(item.language, '#smallChart-' + index, 150, 150);
-				// console.log('abc')
-			// console.log(index);
-        });
-	  window.scrollTo(0,0);
-    }
-  });
-  
-  
-  
+		    layui.each(thisData, function(index, item){
+		  		if (item.language != null)
+					drawSmallPie(item.language, '#smallChart-' + index, 150, 150);
+					// console.log('abc')
+				// console.log(index);
+		    });
+		  	window.scrollTo(0,0);
+		}
+	});
 });
 
