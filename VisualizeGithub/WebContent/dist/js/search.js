@@ -2,6 +2,7 @@
 var language,pushed,created;
 
 // parameter
+var token = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
 var pType;
 var pL;
 var pDate;
@@ -105,7 +106,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -164,7 +165,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -189,7 +190,6 @@ function doingSearch(){
 						+'}'
 				}),
 				success:function(response){
-					console.log(response)
 					check = response.data.search.pageInfo.hasNextPage;
 					cursor = ',after:"'+response.data.search.pageInfo.endCursor+'"';
 
@@ -200,6 +200,8 @@ function doingSearch(){
 				}
 			});
 		}
+		drawPie(convertToD3Data(allUserStarArray), '#bigChart' , 400, 400, '#color-legend-area');
+		changeBtndiv(1);
 	}
 	//issue
 	else if(pType == "ISSUE"){
@@ -212,7 +214,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -264,6 +266,8 @@ function doingSearch(){
 				}
 			});
 		}
+		drawPie(convertToD3Data(allIssueParticipantArray), '#bigChart' , 400, 400, '#color-legend-area');
+		changeBtndiv(2);
 	}
 }
 
@@ -300,7 +304,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -323,7 +327,7 @@ function printRepositoryResult(response,length){
 			}),
 			cache:false,
 			success:function(resp){
-				// console.log(resp);
+				 console.log(resp);
 				// console.log('name: ' + resp.data.repository.name + '  lang: ' + resp.data.repository.languages.edges);
 
 				languageArray = [];
@@ -359,7 +363,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -427,6 +431,7 @@ function printRepositoryResult(response,length){
 		{
 		    drawPie(searchResultArray[i].language, '#smallChart-' + i, 175, 175, null);
 		}
+		changeBtndiv(0);
 	})
 }
 //輸出"user"搜尋結果
@@ -443,7 +448,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "token f3ba434ae51dbaa73ddf1f471b9e1b116ab8d23f"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -533,23 +538,50 @@ function printUserResult(response,length){
 //輸出"issue"搜尋結果
 function printIssueResult(response,Length){
 	var title;
-	console.log(response);
+	// console.log(response);
 	//總共有幾個page
 	for(var i = 0;i < response.data.search.edges.length;i++){
 		title = response.data.search.edges[i].node.title;
+		// console.log(response.data.search.edges[i].node);
+		if (Object.keys(response.data.search.edges[i].node).length == 0){
+			console.log("empty");
+		}
+		else{
+			//participant
+			object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
+			allIssueParticipantArray.push(object);
+			//label
+			object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
+			allIssueLabelArray.push(object);
+			//comment
+			object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
+			allIssueCommentArray.push(object);
 
-		//participant
-		object = {"data":title,"value":response.data.search.edges[i].node.participants.totalCount};
-		allIssueParticipantArray.push(object);
-		//label
-		object = {"data":title,"value":response.data.search.edges[i].node.labels.totalCount};
-		allIssueLabelArray.push(object);
-		//comment
-		object = {"data":title,"value":response.data.search.edges[i].node.comments.totalCount};
-		allIssueCommentArray.push(object);
+			searchResultArray.push(response.data.search.edges[i].node);
+		}
+		
 	}
-	console.log(allIssueParticipantArray);
+	// console.log(allIssueParticipantArray);
 }
+
+// function changeToLanguage(){
+// 	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
+// function changeToFork(){
+// 	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
+// function changeToStar(){
+// 	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
+// function changeToWatch(){
+// 	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
+// function changeToPullRequest(){
+// 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
+// function changeToIssue(){
+// 	drawPie(convertToD3Data(allRepositoryIssueArray), '#bigChart' , 400, 400, '#color-legend-area')
+// };
 
 function changeToLanguage(){
 	drawPie(convertToD3Data(allRepositoryLanguageArray), '#bigChart' , 400, 400, '#color-legend-area')
@@ -557,19 +589,48 @@ function changeToLanguage(){
 function changeToFork(){
 	drawPie(convertToD3Data(allRepositoryForkArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
-function changeToStar(){
+function changeToRepoStar(){
 	drawPie(convertToD3Data(allRepositoryStarArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
+function changeToUserStar(){
+	drawPie(convertToD3Data(allUserStarArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
 function changeToWatch(){
 	drawPie(convertToD3Data(allRepositoryWatchArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
-function changeToPullRequest(){
+function changeToWatching(){
+	drawPie(convertToD3Data(allUserWatchingArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
+function changeToFollowing(){
+	drawPie(convertToD3Data(allUserFollowingArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
+function changeToFollowers(){
+	drawPie(convertToD3Data(allUserFollowersArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
+function changeToRepoPullRequest(){
 	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
-function changeToIssue(){
-	drawPie(convertToD3Data(allRepositoryIssueArray), '#bigChart' , 400, 400, '#color-legend-area')
+function changeToUserPullRequest(){
+	drawPie(convertToD3Data(allUserPullRequestArray), '#bigChart' , 400, 400, '#color-legend-area')
 };
-
+function changeToRepoIssue(){
+	drawPie(convertToD3Data(allRepositoryPullRequestArray), '#bigChart' , 400, 400,'#color-legend-area')
+};
+function changeToUserIssue(){
+	drawPie(convertToD3Data(allUserIssueArray), '#bigChart' , 400, 400,'#color-legend-area')
+};
+function changeToRepo(){
+	drawPie(convertToD3Data(allUserRepositoriesArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
+function changeToParticipant(){
+	drawPie(convertToD3Data(allIssueParticipantArray), '#bigChart' , 400, 400,'#color-legend-area')
+};
+function changeToLabel(){
+	drawPie(convertToD3Data(allIssueLabelArray), '#bigChart' , 400, 400,'#color-legend-area')
+};
+function changeToComment(){
+	drawPie(convertToD3Data(allIssueCommentArray), '#bigChart' , 400, 400, '#color-legend-area')
+};
 
 function changeType(input)
 {
@@ -621,7 +682,7 @@ layui.use(['laypage', 'layer'], function(){
 				        layui.each(thisData, function(index, item){
 				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
 											+'<div class="w3-col" style="width:60%;height:175px">'
-												+'<a href="' + item.url + '">'
+												+'<a href="' + item.url + '" target="_blank">'
 												+'<h2 id="title_'+index+'" class="ellipsis projectName">'+item.title+'</h2><br>'
 												+'<p class="ellipsis2">'+ (item.description != null ? item.description : '') +'</p><br>'
 												+'</a>';
@@ -645,7 +706,7 @@ layui.use(['laypage', 'layer'], function(){
 				        layui.each(thisData, function(index, item){
 				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
 											+'<div class="w3-col" style="width:60%;height:175px">'
-												+'<a href="' + item.url + '">'
+												+'<a href="' + item.url + '" target="_blank">'
 												+'<h2 id="title_'+index+'" class="ellipsis projectName">'+item.name+'</h2><br>'
 												+'<p class="ellipsis2">'+ (item.bio != null ? item.bio : '') +'</p><br>'
 												+'<p>' + item.location + '</p>'
@@ -662,7 +723,21 @@ layui.use(['laypage', 'layer'], function(){
 			        	});
 						break;
 					case 'ISSUE':
-
+				        layui.each(thisData, function(index, item){
+				        	var pushObj = '<div class="w3-row" style="border-bottom:5px black solid;padding:15px;">'
+											+'<div class="w3-col" style="width:60%;height:175px">'
+												+'<a href="' + item.url + '" target="_blank">'
+												+'<h2 id="title_'+index+'" class="ellipsis projectName">'+item.title+'</h2><br>'
+												+'<p class="ellipsis2">'+ item.body +'</p><br>'
+												+'<p>' + item.updatedAt + '</p>'
+												+'</a>'
+											+ '</div>'
+											+'<div class="w3-col" style="width:5%;height:175px"></div>'
+											+'<div class="w3-col" style="width:30%;height:175px">'
+											+'</div>'	
+										+'</div>';
+				            arr.push(pushObj);
+			        	});
 						break;
 				}
        			return arr.join('');
@@ -678,3 +753,11 @@ layui.use(['laypage', 'layer'], function(){
 		}
 	});
 });
+
+function changeBtndiv(i){
+    var data = ['<button class="btn btn-primary" onclick="changeToLanguage()">language</button><button class="btn btn-success" onclick="changeToFork()">fork</button><button class="btn btn-primary" onclick="changeToRepoStar()">star</button><button class="btn btn-info" onclick="changeToWatch()">watch</button><button class="btn btn-success" onclick="changeToRepoPullRequest()">pull request</button><button class="btn btn-info" onclick="changeToRepoIssue()">issue</button>',
+    '<button class="btn btn-primary" onclick="changeToUserIssue()">Issue</button><button class="btn btn-success" onclick="changeToFollowers()">Followers</button><button class="btn btn-primary" onclick="changeToFollowing()">following</button><button class="btn btn-success" onclick="changeToRepo()">Repositories</button><button class="btn btn-info" onclick="changeToUserPullRequest()">PullRequest</button><button class="btn btn-primary" onclick="changeToUserStar()">Star</button><button class="btn btn-success" onclick="changeToWatching()">Watching</button>',
+    '<button class="btn btn-primary" onclick="changeToParticipant()">Participant</button><button class="btn btn-success" onclick="changeToLabel()">Label</button><button class="btn btn-primary" onclick="changeToComment()">Comment</button>'];
+    changeBtn = document.getElementById('Btndiv');
+    changeBtn.innerHTML = data[i];
+ }

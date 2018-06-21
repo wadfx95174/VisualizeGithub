@@ -53,7 +53,7 @@ function convertToTimelineData(inputData)
             outputData.push(noteObject);
         }
     }
-    console.log(outputData);
+    // console.log(outputData);
     return outputData;
 }
 
