@@ -16,17 +16,15 @@ public class LeaderboardServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws IOException, ServletException {
 		
-		ServletContext sc = request.getServletContext();
+//		ServletContext sc = request.getServletContext();
 		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.setPrettyPrinting().create();
 		
 		response.setContentType("application/json");
-		System.out.println(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinWeekleaderboards")));
-		response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)sc.getAttribute("starinWeekleaderboards")));
+//		System.out.println(gson.toJson((ArrayList<Leaderboard>)getServletContext().getAttribute("starinWeekleaderboards")));
+		response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)getServletContext().getAttribute("starinYearleaderboards")));
 		
-		
-			
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
