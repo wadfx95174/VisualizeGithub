@@ -165,7 +165,7 @@ $(document).ready(function(){
 					object = {"data":resp.data.repository.languages.edges[j].node.name
 					,"value":resp.data.repository.languages.edges[j].size};
 					languageArray.push(object);
-					drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
+					drawPie(convertToD3Data(languageArray), '#chart', 600, 600, '#color-legend-area');
 				}
 				// console.log(languageArray);
 
@@ -230,23 +230,24 @@ function timeCompare(timeA, timeB)
 
 function changeToPieChart()
 {
-	drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
+	drawPie(convertToD3Data(languageArray), '#chart', 600, 600, '#color-legend-area');
 }
 
 function changeToBarChart()
 {
-	drawBar(convertToD3Data(languageArray), '#chart', 400, 400);
+	drawBar(convertToD3Data(languageArray), '#chart', 600, 900);
+	$('#color-legend-area').html('');
 }
 
 function changeToRelease()
 {
-	$('#img-area').html('<div id="mytimeline" class="timeline-area"></div>');
+	$('#img-area').html('<div class="w3-col" style="width:70%;padding:25px;"><div id="mytimeline" class="timeline-area"></div></div>');
 	container = document.getElementById('mytimeline');
     draw(container, convertToTimelineData(timelineDataArray) );
 }
 
 function changeToLanguage()
 {
-	$('#img-area').html('<div id="chart"></div><div id="color-legend-area"></div>');
-	drawPie(convertToD3Data(languageArray), '#chart', 400, 400, '#color-legend-area');
+	$('#img-area').html('<div class="w3-col" style="width:50%;padding:25px;"><div id="chart"></div></div><div class="w3-col" style="width:20%;padding:25px;"><div id="color-legend-area"></div></div>');
+	drawPie(convertToD3Data(languageArray), '#chart', 600, 600, '#color-legend-area');
 }

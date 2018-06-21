@@ -106,7 +106,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
