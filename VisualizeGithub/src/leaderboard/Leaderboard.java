@@ -9,8 +9,21 @@ public class Leaderboard {
 	private int watchCount;
 	private int followCount;
 	private String login;
+	private String url;
 
 	
+	public String getUrl()
+	{
+		return url;
+	}
+
+
+	public void setUrl(String url)
+	{
+		this.url = url;
+	}
+
+
 	public String getLogin() {
 		return login;
 	}
