@@ -60,25 +60,16 @@
 	
 	<div id="commit" class=" tab-pane fade in active" >
 		<div class="w3-row" style="height:0px;">
-			<table align="center" border=1 width="85%" height=200px>
-				<caption><div align="left"><h1>Commit</h1></div></caption>
-　				<tr><td align="center"><!-- <img src= "折線圖.jpg" style="height:300px;width:100%;"> --></td></tr>
-			</table>			
 		</div>
 	</div>
 	
 	<div id="analysis" class=" tab-pane fade  ">
-		<div class="w3-col" style="width:70%;padding:25px;">
-			<div>
-				<!-- <img src= "圓餅圖.png" style="height:410px;width:100%" id="123"> -->
-				<div id="img-area">
-					<div id="chart"></div>
-					<div id="color-legend-area"></div>
-				</div>
-				<form action="" align="center">
-					<input type="radio" name="type" value="pie_chart" onchange="changeToPieChart()">圓餅圖
-					<input type="radio" name="type" value="bar_chart" onchange="changeToBarChart()">長條圖
-				</form>
+		<div id="img-area">
+			<div class="w3-col" style="width:50%;padding:25px;">
+				<div id="chart"></div>
+			</div>
+			<div class="w3-col" style="width:20%;padding:25px;">
+				<div id="color-legend-area"></div>
 			</div>
 		</div>
 	<div class="w3-col" style="width:20%;padding:25px;">
@@ -96,6 +87,12 @@
 		</table>
 	</div>
 
+	<div>
+		<form action="" align="center">
+			<input type="radio" name="type" value="pie_chart" onchange="changeToPieChart()">圓餅圖
+			<input type="radio" name="type" value="bar_chart" onchange="changeToBarChart()">長條圖
+		</form>
+	</div>
 			
 		</div>
 	</div>

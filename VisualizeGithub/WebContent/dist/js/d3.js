@@ -102,6 +102,14 @@ function drawBar(data, area, height, width)
 	var svg = d3.select(area).html('').append('svg')
 				.attr({'width':width, 'height':height});
 
+	var valueTotal = 0;
+	console.log(data);
+	for (var i = 0; i < data.length; i++)
+	{
+		console.log(data[i]);
+		valueTotal += data[i].value;
+	}
+
 	var legendData = [];
 
 	svg.selectAll('rect').data(data)
@@ -117,7 +125,7 @@ function drawBar(data, area, height, width)
 				,'y':function(d, i){return i * height / data.length; } })
 		.transition()
 		.duration(1500)
-		.attr({'width':function(d){ return d.value; } });
+		.attr({'width':function(d){ return d.value / valueTotal * (width-50); } });
 
 	svg.selectAll('text').data(data)
 		.enter()
@@ -128,7 +136,7 @@ function drawBar(data, area, height, width)
 				,'y':function(d, i){ return i * height / data.length + height / data.length / 2; } })
 		.transition()
 		.duration(1500)
-		.attr({'x':function(d){ return d.value + 10; } })
+		.attr({'x':function(d){ return d.value / valueTotal * (width-50); } })
 		.tween('number',function(d){
 		    var i = d3.interpolateRound(0, d.value);
 		      return function(t) {
