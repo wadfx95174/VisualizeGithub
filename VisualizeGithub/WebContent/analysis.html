@@ -51,19 +51,18 @@
 	<nav id="menu-wrapper" class="nav navbar-default">
 		<div id="menu" class="container ">
 			<ul class="nav navbar-nav">
-                <li class="active"><a data-toggle="tab" href="#commit"><font color="red"><strong>Commit</strong></font></a></li>
-                <li><a data-toggle="tab" href="#analysis"><font color="red"><strong>Analysis</strong></font></a></li>
+                <li class="active"><a data-toggle="tab" href="#analysis"><font color="red"><strong>Analysis</strong></font></a></li>
             </ul>
 		</div> 
 	</nav>
 	</div>
-	
-	<div id="commit" class=" tab-pane fade in active" >
-		<div class="w3-row" style="height:0px;">
-		</div>
+
+	<div class="btn-group">
+		<button class="btn btn-primary" onclick="changeToPieChart()">圓餅圖</button>
+		<button class="btn btn-success" onclick="changeToBarChart()">長條圖</button>
 	</div>
 	
-	<div id="analysis" class=" tab-pane fade  ">
+	<div id="analysis">
 		<div id="img-area">
 			<div class="w3-col" style="width:50%;padding:25px;">
 				<div id="chart"></div>
@@ -78,20 +77,6 @@
 			<button class="btn btn-primary" onclick="changeToLanguage()">language</button>
 			<button class="btn btn-success" onclick="changeToRelease()">release</button>
 		</div>
-		
-		
-		<table border=1 width=310px  height=300px>
-			<tr><td>
-				文字呈現123
-			</tr></td>
-		</table>
-	</div>
-
-	<div>
-		<form action="" align="center">
-			<input type="radio" name="type" value="pie_chart" onchange="changeToPieChart()">圓餅圖
-			<input type="radio" name="type" value="bar_chart" onchange="changeToBarChart()">長條圖
-		</form>
 	</div>
 			
 		</div>

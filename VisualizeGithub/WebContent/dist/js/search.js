@@ -2,7 +2,8 @@
 var language,pushed,created;
 
 // parameter
-var token = "token 1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3"
+var ftoken = "bearer 10ae560bee703222550b243cfa5f75f74b515e78";
+var stoken = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253";
 var pType;
 var pL;
 var pDate;
@@ -106,7 +107,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: token
+		        	Authorization: ftoken
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -165,7 +166,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: token
+		        	Authorization: ftoken
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -214,7 +215,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: token
+		        	Authorization: ftoken
 		      	},
 		      	data: JSON.stringify({
 		      		query:
@@ -304,7 +305,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: token
+	        	Authorization: stoken
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -363,7 +364,7 @@ function printRepositoryResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: token
+	        	Authorization: stoken
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -448,7 +449,7 @@ function printUserResult(response,length){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: token
+	        	Authorization: stoken
 	      	},
 	      	data: JSON.stringify({
 	      		query:

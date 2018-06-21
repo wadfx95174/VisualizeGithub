@@ -20,6 +20,8 @@ public class CalculateLeaderboard {
 	private static final String accessToken5="access_token=eb61d53220a841fab25d8b4f70904dd178232313";
 	private static final String accessToken6="access_token=65411542b774c621d02773067781b118efe1ce7a";
 	private static final String accessToken7="access_token=80f13189bbeb1dafcd1ef37cc04e97e669a71143";
+	private static final String accessToken8="access_token=10ae560bee703222550b243cfa5f75f74b515e78"; // 翔
+	private static final String accessToken9="access_token=727d34d1872545e5859ec1c969dea1f93a20d253"; // 哲
 	public CalculateLeaderboard() {}
 	//要改成ArrayList
 //	public void CalStar() throws IOException {
@@ -48,7 +50,7 @@ public class CalculateLeaderboard {
 		ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 		
 		//Create HttpURLConnection 
-		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=stars&order=desc&per_page=100&"+accessToken).openConnection();
+		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=stars&order=desc&per_page=100&"+accessToken8).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
 		//Read line by line
@@ -67,7 +69,7 @@ public class CalculateLeaderboard {
 		
 		//api只允許存取前1000筆資料，所以page最多只能到10
 		for(int i = 2 ;i <= 10;i++) {
-			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=stars&order=desc&page="+i+"&per_page=100&"+accessToken4).openConnection();
+			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=stars&order=desc&page="+i+"&per_page=100&"+accessToken9).openConnection();
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(httpcon2.getInputStream()));
 			
 			StringBuilder responseSB2 = new StringBuilder();
@@ -85,6 +87,7 @@ public class CalculateLeaderboard {
 			leaderboard = new Leaderboard();
 			leaderboard.setStargazersCount(starCount.get(i));
 			leaderboard.setFullName(fullName.get(i).split("\"")[1]);
+			leaderboard.setUrl("https://github.com/"+fullName.get(i).split("\"")[1]);
 			leaderboards.add(leaderboard);
 		}
 		
@@ -101,7 +104,7 @@ public class CalculateLeaderboard {
 		ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 		
 		//Create HttpURLConnection 
-		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&per_page=100&"+accessToken2).openConnection();
+		HttpURLConnection httpcon = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&per_page=100&"+accessToken8).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
 		//Read line by line
@@ -117,7 +120,7 @@ public class CalculateLeaderboard {
 		
 		//api只允許存取前1000筆資料，所以page最多只能到10
 		for(int i = 2 ;i <= 10;i++) {
-			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&page="+i+"&per_page=100&"+accessToken5).openConnection();
+			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/repositories?q="+pushed+"&sort=forks&order=desc&page="+i+"&per_page=100&"+accessToken9).openConnection();
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(httpcon2.getInputStream()));
 			
 			StringBuilder responseSB2 = new StringBuilder();
@@ -134,6 +137,7 @@ public class CalculateLeaderboard {
 			leaderboard = new Leaderboard();
 			leaderboard.setForksCount(frokCount.get(i));
 			leaderboard.setFullName(fullName.get(i).split("\"")[1]);
+			leaderboard.setUrl("https://github.com/" + fullName.get(i).split("\"")[1]);
 			leaderboards.add(leaderboard);
 		}
 		return leaderboards;
@@ -149,7 +153,7 @@ public class CalculateLeaderboard {
 		
 		//Create HttpURLConnection 
 		HttpURLConnection httpcon = (HttpURLConnection) new URL(
-				"https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&per_page=100&"+accessToken3).openConnection();
+				"https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&per_page=100&"+accessToken8).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
 		
 		//Read line by line
@@ -164,7 +168,7 @@ public class CalculateLeaderboard {
 		
 		//api只允許存取前1000筆資料，所以page最多只能到10
 		for(int i = 2 ;i <= 10;i++) {
-			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&page="+i+"&per_page=100&"+accessToken3).openConnection();
+			HttpURLConnection httpcon2 = (HttpURLConnection) new URL("https://api.github.com/search/users?q=followers:>0&sort=followers&order=desc&page="+i+"&per_page=100&"+accessToken9).openConnection();
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(httpcon2.getInputStream()));
 			
 			StringBuilder responseSB2 = new StringBuilder();
@@ -176,12 +180,12 @@ public class CalculateLeaderboard {
 			Arrays.stream(responseSB2.toString().split("\"login\":")).skip(1).map(l -> l.split(",")[0]).forEach(l -> login.add(l));
 		
 		}
-		
+
 		
 		//用每個user的login去抓每個user的follow
 		for(String log : login) {
 			//Create HttpURLConnection 
-			HttpURLConnection httpcon3 = (HttpURLConnection) new URL("https://api.github.com/users/"+log.split("\"")[1]+"?"+accessToken6).openConnection();
+			HttpURLConnection httpcon3 = (HttpURLConnection) new URL("https://api.github.com/users/"+log.split("\"")[1]+"?"+accessToken8).openConnection();
 			BufferedReader in3 = new BufferedReader(new InputStreamReader(httpcon3.getInputStream()));
 			
 			//Read line by line
@@ -200,6 +204,7 @@ public class CalculateLeaderboard {
 			leaderboard = new Leaderboard();
 			leaderboard.setForksCount(followCount.get(i));
 			leaderboard.setLogin((login.get(i).split("\"")[1]));
+			leaderboard.setUrl("https://github.com/" + (login.get(i).split("\"")[1]));
 			leaderboards.add(leaderboard);
 		}
 		return leaderboards;

@@ -25,6 +25,7 @@ $(document).ready(function(){
 		}),
 		cache:false,
 		success:function(response){
+			console.log(response);
 			var temp;
 			for(var i = 0;i < 3;i++){
 				if(i==0){
@@ -43,7 +44,7 @@ $(document).ready(function(){
 						+img
 						+'<h3 class="ellipsis">'+response.data.search.edges[temp].node.nameWithOwner+'</h3>'
 						+'<p class="lead">'+response.data.search.edges[temp].node.description+'</p>'
-						+'<p><a href="https://github.com/'+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
+						+'<p><a href="analysis.html?name='+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
 						+'<a href="https://github.com/'+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
 						+'</div>');
 				$('.ellipsis').tooltip({title:response.data.search.edges[temp].node.nameWithOwner ,  placement:"bottom", animation: true});
@@ -60,7 +61,7 @@ $(document).ready(function(){
     	url: "https://api.github.com/graphql",
     	contentType: "application/json",
       	headers: {
-        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+        	Authorization: "bearer 10ae560bee703222550b243cfa5f75f74b515e78"
       	},
       	data: JSON.stringify({
       		query:
@@ -97,7 +98,7 @@ $(document).ready(function(){
 						+img
 						+'<h3 class="ellipsis">'+response.data.search.edges[temp].node.nameWithOwner+'</h3>'
 						+'<p class="lead">'+response.data.search.edges[temp].node.description+'</p>'
-						+'<p><a href="https://github.com/'+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
+						+'<p><a href="analysis.html?name='+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button" style="margin-right:10px;">分析</a>'
 						+'<a href="https://github.com/'+response.data.search.edges[temp].node.nameWithOwner+'" class="btn btn-embossed btn-primary view" role="button">連結</a></p>'
 						+'</div>');
 				$('.ellipsis').tooltip({title:response.data.search.edges[temp].node.nameWithOwner ,  placement:"bottom", animation: true});

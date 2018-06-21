@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 <link href="plugins/general.css" rel="stylesheet" type="text/css" media="all" />
+<!-- d3 -->
+<link href="dist/css/d3.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="dist/js/d3.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -31,11 +35,10 @@
 	<nav id="menu-wrapper" class="nav navbar-default">
 		<div id="menu" class="container ">
 			<ul class="nav navbar-nav">
-                <li class="active"><a data-toggle="tab" href="#star"><font color="red"><strong>Star</strong></font></a></li>
-                <li><a data-toggle="tab" href="#fork"><font color="red"><strong>fork</strong></font></a></li>
-                <li><a data-toggle="tab" href="#follow"><font color="red"><strong>follow</strong></font></a></li>
-				<li><a data-toggle="tab" href="#watch"><font color="red"><strong>watch</strong></font></a></li>
-            </ul>
+                <li class="active"><a data-toggle="tab" href="#star" id="star-toggle"><font color="red"><strong>Star</strong></font></a></li>
+                <li><a data-toggle="tab" href="#fork" id="fork-toggle"><font color="red"><strong>fork</strong></font></a></li>
+                <li><a data-toggle="tab" href="#follow" id="follow-toggle"><font color="red"><strong>follow</strong></font></a></li>
+			</ul>
 		</div> 
 	</nav>
 	</div>
@@ -45,152 +48,69 @@
         <div id="star" class=" tab-pane fade in active">
 			<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
-					<h2 style="padding:0 0 15px 50px;">熱門專案1</h2>
+					<h2 style="padding:0 0 15px 50px;">熱門 Star 專案</h2>
 				
 					<div style="padding:0 0 0 84%;">
-						<select class="form-control" id="date" name="date" style="color:black;width:110px;">
-							<option selected value="1">一天內</option>
-							<option value="7">一週內</option>
+						<select class="form-control" id="star-date" name="date" style="color:black;width:110px;">
+							<option selected value="7">一週內</option>
 							<option value="30">一個月內</option>
 							<option value="180">半年內</option>
 							<option value="365">一年內</option>
 						</select>
 					</div>
-				
-					<div class="w3-row" id="starContent">
-					</div>					
+					<div class="w3-row" id="starContent"></div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
 					<div>
-						<button class="btn btn-primary">圓餅圖</button>
-						<button class="btn btn-success">長條圖</button>
-					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
-					</div>	
-					
+						<button class="btn btn-primary" onclick="changeToPieChart('#star-chart','#star-color')">圓餅圖</button>
+						<button class="btn btn-success" onclick="changeToBarChart('#star-chart')">長條圖</button>
+					    <div id="star-chart"></div>
+					    <div id="star-color"></div>
+					</div>
 				</div>			
 			</div>
 		</div>
 	
-	<div id="fork" class=" tab-pane fade ">
-		<div class="w3-row">
+		<div id="fork" class=" tab-pane fade ">
+			<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">熱門專案2</h2>
-				
-				<div style="padding:0 0 0 84%;">
-					<select class="form-control" id="date" name="date" style="color:black;width:110px;">
-						<option selected value="1">一天內</option>
-						<option value="7">一週內</option>
-						<option value="30">一個月內</option>
-						<option value="180">半年內</option>
-						<option value="365">一年內</option>
-					</select>
-				</div>
-				
-				
-					<div class="w3-row">					
-						<div>	
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-
-						<div>	
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-						
-						<div>		
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-					</div>					
+					<h2 style="padding:0 0 15px 50px;">熱門 Fork 專案</h2>
+					
+					<div style="padding:0 0 0 84%;">
+						<select class="form-control" id="fork-date" name="date" style="color:black;width:110px;">
+							<option selected value="7">一週內</option>
+							<option value="30">一個月內</option>
+							<option value="180">半年內</option>
+							<option value="365">一年內</option>
+						</select>
+					</div>
+					<div class="w3-row" id="forkContent"></div>					
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
 					<div>
-							<button class="btn btn-primary">圓餅圖</button>
-							<button class="btn btn-success">長條圖</button>
-					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
-					</div>					
+						<button class="btn btn-primary" onclick="changeToPieChart('#fork-chart','#fork-color')">圓餅圖</button>
+						<button class="btn btn-success" onclick="changeToBarChart('#fork-chart')">長條圖</button>
+					    <div id="fork-chart"></div>
+					    <div id="fork-color"></div>
+					</div>
 				</div>			
 			</div>
-	</div>
+		</div>
 	
-	<div id="follow" class=" tab-pane fade ">
-		<div class="w3-row">
+		<div id="follow" class=" tab-pane fade ">
+			<div class="w3-row">
 				<div class="w3-col" style="width:60%;padding:25px;">
-				<h2 style="padding:0 0 15px 50px;">熱門專案3</h2>
-				
-				<div style="padding:0 0 0 84%;">
-					<select class="form-control" id="date" name="date" style="color:black;width:110px;">
-						<option selected value="1">一天內</option>
-						<option value="7">一週內</option>
-						<option value="30">一個月內</option>
-						<option value="180">半年內</option>
-						<option value="365">一年內</option>
-					</select>
-				</div>
-				
-				
-				
-					<div class="w3-row">					
-						<div>	
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-
-						<div>
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-						
-						<div>	
-							<a href="">
-							<div class="w3-col" style="width:60%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">XXXXXXXXX</h5>						
-							</div>
-							<div class="w3-col" style="width:40%;border-top:5px black solid;padding:15px;">
-								<h5 style="padding:0 0 0 50px;">100000000</h5>						
-							</div>
-							</a>	
-						</div>
-					</div>					
+					<h2 style="padding:0 0 15px 50px;">熱門 Follow 使用者</h2>
+					<div class="w3-row" id="followContent"></div>			
 				</div>
 				<div class="w3-col" style="width:40%;padding:25px;">
 					<div>
-							<button class="btn btn-primary">圓餅圖</button>
-							<button class="btn btn-success">長條圖</button>
-					   <img src="test圖.jpg" style="width:90%;height:auto"></img>
-					</div>					
-				</div>			
+						<button class="btn btn-primary" onclick="changeToPieChart('#follow-chart','#follow-color')">圓餅圖</button>
+						<button class="btn btn-success" onclick="changeToBarChart('#follow-chart')">長條圖</button>
+					    <div id="follow-chart"></div>
+					    <div id="follow-color"></div>
+					</div>
+				</div>		
 			</div>
 	</div>
 </div>
