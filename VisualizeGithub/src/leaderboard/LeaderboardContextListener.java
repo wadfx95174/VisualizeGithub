@@ -52,42 +52,37 @@ public class LeaderboardContextListener implements ServletContextListener{
 		ca.add(Calendar.DATE, -7); //年份减1  
 		Date lastWeek = ca.getTime(); //结果  
 		inWeek = checkDate(lastWeek.getYear()+1900,lastWeek.getMonth()+1,lastWeek.getDate());
-		TimerTask task = new TimerTask() {
-			@Override
-			public void run() {
+//		TimerTask task = new TimerTask() {
+//			@Override
+//			public void run() {
 				try {
 					starinWeekleaderboards = cl.CalStar(inWeek);
-					starinMonthleaderboards = cl.CalStar(inMonth);
-//					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
-//					starinYearleaderboards = cl.CalStar(inYear);
-//					
-//					forkinWeekleaderboards = cl.CalFork(inWeek);
-//					forkinMonthleaderboards = cl.CalFork(inMonth);
-//					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
-//					forkinYearleaderboards = cl.CalFork(inYear);
-//					
-//					followleaderboards = cl.CalFollow();
-					
-					
 					sc.setAttribute("starinWeekleaderboards",starinWeekleaderboards);
-					sc.setAttribute("starinMonthleaderboards", starinMonthleaderboards);
-					sc.setAttribute("starinHalfYearleaderboards", starinHalfYearleaderboards);
-					sc.setAttribute("starinYearleaderboards", starinYearleaderboards);
-					
+					forkinWeekleaderboards = cl.CalFork(inWeek);
 					sc.setAttribute("forkinWeekleaderboards", forkinWeekleaderboards);
+					starinMonthleaderboards = cl.CalStar(inMonth);
+					sc.setAttribute("starinMonthleaderboards", starinMonthleaderboards);
+					forkinMonthleaderboards = cl.CalFork(inMonth);
 					sc.setAttribute("forkinMonthleaderboards", forkinMonthleaderboards);
+					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
+					sc.setAttribute("starinHalfYearleaderboards", starinHalfYearleaderboards);
+					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
 					sc.setAttribute("forkinHalfYearleaderboards", forkinHalfYearleaderboards);
+					starinYearleaderboards = cl.CalStar(inYear);
+					sc.setAttribute("starinYearleaderboards", starinYearleaderboards);
+					forkinYearleaderboards = cl.CalFork(inYear);
 					sc.setAttribute("forkinYearleaderboards", forkinYearleaderboards);
-					
+					followleaderboards = cl.CalFollow();
 					sc.setAttribute("followleaderboards", followleaderboards);
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
-		};
-		timer = new Timer();
+//			}
+//		};
+//		timer = new Timer();
 		//24小時跑一次
-		timer.schedule(task,0, 24*60*60*1000);
+//		timer.schedule(task,0, 24*60*60*1000);
 	}
 	public String checkDate(int year,int month,int date)
 	{

@@ -4,6 +4,7 @@ var container ;
 var source ;
 
 var array;
+var token = "token 1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3"
 
 function get(name)
 {
@@ -26,7 +27,7 @@ $(document).ready(function(){
 	//因為不知道有幾頁，就全部跑，用length來判斷該頁面有沒有東西，如果沒有就不做事
 	for(var i = 1 ;i <= 10; i++){
 		var promise = $.ajax({
-			url:"https://api.github.com/repos/"+fullName+"/commits?page="+i+"&per_page=100&access_token=727d34d1872545e5859ec1c969dea1f93a20d253",
+			url:"https://api.github.com/repos/"+fullName+"/commits?page="+i+"&per_page=100&access_token=1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3",
 			cache:false,
 			success:function(response){
 				if(response.length!=0){
@@ -76,7 +77,7 @@ $(document).ready(function(){
 	    	//取消非同步
 	    	async:false,
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:
@@ -139,7 +140,7 @@ $(document).ready(function(){
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
 	      	headers: {
-	        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+	        	Authorization: token
 	      	},
 	      	data: JSON.stringify({
 	      		query:

@@ -2,7 +2,7 @@
 var language,pushed,created;
 
 // parameter
-var token = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+var token = "token 1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3"
 var pType;
 var pL;
 var pDate;
@@ -106,7 +106,7 @@ function doingSearch(){
 		    	//取消非同步
 		    	async:false,
 		      	headers: {
-		        	Authorization: "token b95bb7fc0279e036a184c2ed9cf95269cc308656"
+		        	Authorization: token
 		      	},
 		      	data: JSON.stringify({
 		      		query:
