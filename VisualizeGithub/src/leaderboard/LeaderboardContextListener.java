@@ -56,24 +56,24 @@ public class LeaderboardContextListener implements ServletContextListener{
 //			@Override
 //			public void run() {
 				try {
-					starinWeekleaderboards = cl.CalStar(inWeek);
-					sc.setAttribute("starinWeekleaderboards",starinWeekleaderboards);
-					forkinWeekleaderboards = cl.CalFork(inWeek);
-					sc.setAttribute("forkinWeekleaderboards", forkinWeekleaderboards);
-					starinMonthleaderboards = cl.CalStar(inMonth);
-					sc.setAttribute("starinMonthleaderboards", starinMonthleaderboards);
-					forkinMonthleaderboards = cl.CalFork(inMonth);
-					sc.setAttribute("forkinMonthleaderboards", forkinMonthleaderboards);
-					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
-					sc.setAttribute("starinHalfYearleaderboards", starinHalfYearleaderboards);
-					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
-					sc.setAttribute("forkinHalfYearleaderboards", forkinHalfYearleaderboards);
+//					starinWeekleaderboards = cl.CalStar(inWeek);
+//					sc.setAttribute("starinWeekleaderboards",starinWeekleaderboards);
+//					forkinWeekleaderboards = cl.CalFork(inWeek);
+//					sc.setAttribute("forkinWeekleaderboards", forkinWeekleaderboards);
+//					starinMonthleaderboards = cl.CalStar(inMonth);
+//					sc.setAttribute("starinMonthleaderboards", starinMonthleaderboards);
+//					forkinMonthleaderboards = cl.CalFork(inMonth);
+//					sc.setAttribute("forkinMonthleaderboards", forkinMonthleaderboards);
+//					starinHalfYearleaderboards = cl.CalStar(inHalfYear);
+//					sc.setAttribute("starinHalfYearleaderboards", starinHalfYearleaderboards);
+//					forkinHalfYearleaderboards = cl.CalFork(inHalfYear);
+//					sc.setAttribute("forkinHalfYearleaderboards", forkinHalfYearleaderboards);
 					starinYearleaderboards = cl.CalStar(inYear);
 					sc.setAttribute("starinYearleaderboards", starinYearleaderboards);
-					forkinYearleaderboards = cl.CalFork(inYear);
-					sc.setAttribute("forkinYearleaderboards", forkinYearleaderboards);
-					followleaderboards = cl.CalFollow();
-					sc.setAttribute("followleaderboards", followleaderboards);
+//					forkinYearleaderboards = cl.CalFork(inYear);
+//					sc.setAttribute("forkinYearleaderboards", forkinYearleaderboards);
+//					followleaderboards = cl.CalFollow();
+//					sc.setAttribute("followleaderboards", followleaderboards);
 					
 				} catch (IOException e) {
 					e.printStackTrace();
