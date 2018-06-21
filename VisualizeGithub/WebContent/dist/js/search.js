@@ -438,13 +438,14 @@ function printRepositoryResult(response,length){
 //輸出"user"搜尋結果
 function printUserResult(response,length){
 	var login;
+	var userPromises = [];
 	// //總共有幾個page
 	// console.log(response);
 	// console.log(length);
 	for(var i = 0;i < length;i++){
 		login = response.data.search.edges[i].node.login;
 		//拿所有搜尋結果的不同資料的數量，然後塞入陣列
-		$.ajax({
+		var userPromise = $.ajax({
 			method: "POST",
 	    	url: "https://api.github.com/graphql",
 	    	contentType: "application/json",
@@ -533,7 +534,13 @@ function printUserResult(response,length){
 				}
 		});
 		searchResultArray.push({"name": response.data.search.edges[i].node.login + '/' + response.data.search.edges[i].node.name, "location": response.data.search.edges[i].node.location, "url": response.data.search.edges[i].node.url, "bio": response.data.search.edges[i].node.bio});
+		userPromises.push(userPromise);
 	}
+	Promise.all(userPromises).then(function(){
+		// 畫大圖
+		drawPie(convertToD3Data(allUserStarArray), '#bigChart' , 400, 400, '#color-legend-area');
+		changeBtndiv(1);
+	})
 }
 
 //輸出"issue"搜尋結果
