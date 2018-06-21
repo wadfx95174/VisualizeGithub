@@ -20,7 +20,7 @@ public class LeaderboardServlet extends HttpServlet {
 		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.setPrettyPrinting().create();
-		
+		 
 		response.setContentType("application/json");
 //		System.out.println(gson.toJson((ArrayList<Leaderboard>)getServletContext().getAttribute("starinWeekleaderboards")));
 //		response.getWriter().write(gson.toJson((ArrayList<Leaderboard>)getServletContext().getAttribute("starinYearleaderboards")));
