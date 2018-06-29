@@ -75,7 +75,6 @@ public class LeaderboardContextListener implements ServletContextListener{
 					forkinYearleaderboards = cl.CalFork(inYear);
 					sc.setAttribute("forkinYearleaderboards", forkinYearleaderboards);
 					
-					
 				} catch (IOException e) {
 					sc.setAttribute("error", e.toString());
 				}
