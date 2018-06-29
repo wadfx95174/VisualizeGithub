@@ -71,14 +71,16 @@ function getVersionIdArray(timelineData)
 // 繪製 timeline
 function draw(container, data)
 {
+	options.start = data[data.length-1].start;
+	options.end = new Date().toISOString();
     timeline = new vis.Timeline(container, data, groups, options);
 }
 
 // 畫面移動至選定 id 位置
 function moveToVersion(start, end)
 {
-    console.log(start);
-    console.log(end);
+    // console.log(start);
+    // console.log(end);
     timeline.setWindow(start, end);
     // timeline.fit();
     // timeline.focus(id, {duration: 1000});
