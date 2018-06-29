@@ -6,7 +6,7 @@ $(document).ready(function(){
     	url: "https://api.github.com/graphql",
     	contentType: "application/json",
       	headers: {
-        	Authorization: "bearer 727d34d1872545e5859ec1c969dea1f93a20d253"
+        	Authorization: "bearer 7b2797e105897080e19b0eba56428fe55a8945ba"
       	},
       	data: JSON.stringify({
       		query:
@@ -29,15 +29,15 @@ $(document).ready(function(){
 			var temp;
 			for(var i = 0;i < 3;i++){
 				if(i==0){
-					img = '<img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
+					img = '<img class="rotate" src="img/intro/silver.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
 					temp = 1;
 				}				
 				else if(i==1){
-					img = '<img class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
+					img = '<img class="rotate" src="img/intro/gold.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
 					temp = 0;
 				}
 				else {
-					img = '<img class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
+					img = '<img class="rotate" src="img/intro/copper.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
 					temp = 2;
 				}
 				$("#starLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'
@@ -61,7 +61,7 @@ $(document).ready(function(){
     	url: "https://api.github.com/graphql",
     	contentType: "application/json",
       	headers: {
-        	Authorization: "bearer 10ae560bee703222550b243cfa5f75f74b515e78"
+        	Authorization: "bearer 7b2797e105897080e19b0eba56428fe55a8945ba"
       	},
       	data: JSON.stringify({
       		query:
@@ -83,15 +83,15 @@ $(document).ready(function(){
 			for(var i = 0;i < 3;i++){
 				var temp;
 				if(i==0){
-					img = '<img class="rotate" src="img/icon/銀牌.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
+					img = '<img class="rotate" src="img/intro/silver.jpg" alt="Generic placeholder image" style="width:160px;height:160px">';
 					temp = 1;
 				}				
 				else if(i==1){
-					img = '<img class="rotate" src="img/icon/金牌.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
+					img = '<img class="rotate" src="img/intro/gold.jpg" alt="Generic placeholder image" style="width:200px;height:200px">';
 					temp = 0;
 				}
 				else {
-					img = '<img class="rotate" src="img/icon/銅牌.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
+					img = '<img class="rotate" src="img/intro/copper.jpg" alt="Generic placeholder image" style="width:120px;height:120px">';
 					temp = 2;
 				}
 				$("#forkLeaderboard").append('<div class="col-sm-4 wow fadeInDown text-center">'

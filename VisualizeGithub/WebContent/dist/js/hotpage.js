@@ -1,4 +1,4 @@
-var ajaxURL="http://localhost:8080/";
+var ajaxURL="https://visualizegithub.herokuapp.com/";
 
 var chartData = [{'data': '50000以上', 'value': 0}, {'data': '40000 ~ 49999', 'value': 0}, {'data': '30000 ~ 39999', 'value': 0}, {'data': '20000 ~ 29999', 'value': 0}, {'data': '10000 ~ 19999', 'value': 0}, {'data': '10000以下', 'value': 0}];
 
@@ -21,7 +21,7 @@ var selectedTime;
 $(document).ready(function(){
 	// 取 week star
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 	// 取 month star
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -60,7 +60,7 @@ $(document).ready(function(){
 
 	// 取 halfyear star
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -77,7 +77,7 @@ $(document).ready(function(){
 
 	// 取 year star
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 	// 取 week fork
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -113,7 +113,7 @@ $(document).ready(function(){
 
 	// 取 month fork
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -130,7 +130,7 @@ $(document).ready(function(){
 
 	// 取  halfyear fork
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
 	// 取 year fork
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{
@@ -164,7 +164,7 @@ $(document).ready(function(){
 	
 	// 取 follow
 	$.ajax({
-		url:ajaxURL+"VisualizeGithub/LeaderboardServlet.do",
+		url:ajaxURL+"LeaderboardServlet.do",
 		method : 'POST',
 		cache :false,
 		data:{

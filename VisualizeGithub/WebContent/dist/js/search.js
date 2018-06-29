@@ -2,8 +2,8 @@
 var language,pushed,created;
 
 // parameter
-var ftoken = "bearer 10ae560bee703222550b243cfa5f75f74b515e78";
-var stoken = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253";
+var ftoken = "bearer 7b2797e105897080e19b0eba56428fe55a8945ba";
+var stoken = "bearer 2ceafa42746ddaa6e4bfa923e120ad5b7c0c0b7e";
 var pType;
 var pL;
 var pDate;

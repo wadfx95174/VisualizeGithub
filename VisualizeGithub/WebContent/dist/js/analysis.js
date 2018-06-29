@@ -4,8 +4,8 @@ var container ;
 var source ;
 
 var array;
-var ftoken = "bearer 10ae560bee703222550b243cfa5f75f74b515e78";
-var stoken = "bearer 727d34d1872545e5859ec1c969dea1f93a20d253";
+var ftoken = "bearer 7b2797e105897080e19b0eba56428fe55a8945ba";
+var stoken = "bearer 2ceafa42746ddaa6e4bfa923e120ad5b7c0c0b7e";
 
 function get(name)
 {
@@ -26,28 +26,28 @@ $(document).ready(function(){
 	var promises = [];
 	//抓commit資料
 	//因為不知道有幾頁，就全部跑，用length來判斷該頁面有沒有東西，如果沒有就不做事
-	for(var i = 1 ;i <= 10; i++){
-		var promise = $.ajax({
-			url:"https://api.github.com/repos/"+fullName+"/commits?page="+i+"&per_page=100&access_token=1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3",
-			cache:false,
-			success:function(response){
-				if(response.length!=0){
-					// console.log(response);
-					for(var j = 0;j < response.length;j++){
-						// console.log(response[j].committer.login);
-						object={"committer": (response[j].committer != null ? response[j].committer.login : ''),"message":response[j].commit.message,
-							"date":response[j].commit.committer.date};
-						commitArray.push(object);
-					}
-				}
-				// console.log(commitArray);
-			},
-			error:function(e){
-				console.log("analysis error");
-			}
-		});
-		promises.push(promise);
-	}
+	// for(var i = 1 ;i <= 10; i++){
+	// 	var promise = $.ajax({
+	// 		url:"https://api.github.com/repos/"+fullName+"/commits?page="+i+"&per_page=100&access_token=1d0eea83c6bf238ec1d281e606d6d7d8c45ebfd3",
+	// 		cache:false,
+	// 		success:function(response){
+	// 			if(response.length!=0){
+	// 				// console.log(response);
+	// 				for(var j = 0;j < response.length;j++){
+	// 					// console.log(response[j].committer.login);
+	// 					object={"committer": (response[j].committer != null ? response[j].committer.login : ''),"message":response[j].commit.message,
+	// 						"date":response[j].commit.committer.date};
+	// 					commitArray.push(object);
+	// 				}
+	// 			}
+	// 			// console.log(commitArray);
+	// 		},
+	// 		error:function(e){
+	// 			console.log("analysis error");
+	// 		}
+	// 	});
+	// 	promises.push(promise);
+	// }
 	Promise.all(promises).then(function(){
 		commitArray = commitArray.sort(function (a, b) {
 		tA = a;

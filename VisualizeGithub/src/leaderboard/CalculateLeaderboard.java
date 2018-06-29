@@ -20,8 +20,8 @@ public class CalculateLeaderboard {
 	private static final String accessToken5="access_token=eb61d53220a841fab25d8b4f70904dd178232313";
 	private static final String accessToken6="access_token=65411542b774c621d02773067781b118efe1ce7a";
 	private static final String accessToken7="access_token=80f13189bbeb1dafcd1ef37cc04e97e669a71143";
-	private static final String accessToken8="access_token=10ae560bee703222550b243cfa5f75f74b515e78"; // 翔
-	private static final String accessToken9="access_token=727d34d1872545e5859ec1c969dea1f93a20d253"; // 哲
+	private static final String accessToken8="access_token=7b2797e105897080e19b0eba56428fe55a8945ba"; // 翔
+	private static final String accessToken9="access_token=2ceafa42746ddaa6e4bfa923e120ad5b7c0c0b7e"; // 哲
 	public CalculateLeaderboard() {}
 	//要改成ArrayList
 //	public void CalStar() throws IOException {
