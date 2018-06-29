@@ -17,6 +17,8 @@ var commitArray=[];
 // 放圖資料
 var commitChartArray=[];
 var timelineDataArray=[];
+var convertedTimelineData = [];
+var versionArray = [];
 
 var languageArray=[];
 var commitMap = new Map();
@@ -134,6 +136,13 @@ $(document).ready(function(){
     	arr.push(releaseArray[i].description);
     	timelineDataArray.push({'data':releaseArray[i].releaseName, 'time':releaseArray[i].updatedAt, 'note':arr})
     }
+    
+	for (var i = 0; i < timelineDataArray.length; i++)
+	{
+		var tmpNote = timelineDataArray[i].note[0].split('\n');
+		timelineDataArray[i].note = tmpNote;
+	}
+	convertedTimelineData = convertToTimelineData(timelineDataArray);
 
 	//language
 	$.ajax({
@@ -243,16 +252,35 @@ function changeToBarChart()
 
 function changeToRelease()
 {
+	$('#btn-area').hide();
 	$('#img-area').html('<div class="w3-col" style="width:70%;padding:25px;"><div id="mytimeline" class="timeline-area"></div></div>');
 	container = document.getElementById('mytimeline');
 	if (timelineDataArray.length != 0)
-		draw(container, convertToTimelineData(timelineDataArray) );
+	{
+		draw(container,  convertedTimelineData);
+		versionArray = getVersionIdArray(convertedTimelineData);
+
+		$('#version-area').html('選擇版本：<select id="version-select" class="form-control" style="width:auto;"></select>');
+		for (var i = 0; i < versionArray.length; i++)
+		{
+			$('#version-select').append('<option value="' + versionArray[i].start + '_' + versionArray[i].end + '">' + versionArray[i].version + '</option>')
+		}
+	}
 	else
 		container.innerHTML = '<p>查無 Release 資料</p>'
 }
 
+$(document).on('change', '#version-select', changeVersion);
+
+function changeVersion()
+{
+	var versions = $('#version-select').val().split('_');
+	moveToVersion(versions[0], versions[1]);
+}
+
 function changeToLanguage()
 {
+	$('#btn-area').show();
 	$('#img-area').html('<div class="w3-col" style="width:50%;padding:25px;"><div id="chart"></div></div><div class="w3-col" style="width:20%;padding:25px;"><div id="color-legend-area"></div></div>');
 	drawPie(convertToD3Data(languageArray), '#chart', 600, 600, '#color-legend-area');
 }
